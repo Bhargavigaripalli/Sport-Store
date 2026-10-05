@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Login - Sports Store Platform</title>
+  <meta name="description" content="Sign in to your Sports Store customer portal or store administrator console.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/webp" href="assets/images/logoStackly.webp">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="bg-dark text-light">
+
+  <!-- PRELOADER OVERLAY -->
+  <div id="preloader-overlay" class="preloader-overlay">
+    <div class="preloader-wrapper">
+      <div class="preloader-graphics-stage">
+        <svg class="preloader-svg-graphic" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="44" fill="none" stroke="#2b2b2b" stroke-width="4"></circle>
+          <circle cx="50" cy="50" r="44" fill="none" stroke="#ffffff" stroke-width="4" stroke-dasharray="70 180" stroke-linecap="round"></circle>
+        </svg>
+        <img src="assets/images/logoStackly.webp" alt="Logo" class="preloader-icon" style="height: 38px; width: auto; object-fit: contain;">
+      </div>
+      <div class="preloader-status-text">AUTHENTICATING SPORTS STORE...</div>
+      <div class="preloader-bar-bg">
+        <div id="preloader-bar-fill" class="preloader-bar-fill"></div>
+      </div>
+      <div id="preloader-percent-label" class="preloader-percent-label">0%</div>
+    </div>
+  </div>
+
+  <!-- AUTHENTICATION WRAPPER -->
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      
+      <!-- Top Back Navigation & Logo -->
+      <div class="auth-logo-header">
+        <div class="mb-3 text-start">
+          <a href="index.html" class="text-secondary text-decoration-none small">
+            <i class="fa-solid fa-arrow-left me-1"></i> Back to Store
+          </a>
+        </div>
+        <a href="index.html" class="d-inline-block">
+          <img src="assets/images/logoStackly.webp" alt="Sports Store Logo" style="height: 52px; width: auto;">
+        </a>
+        <h4 class="fw-bold mt-3 text-white">Sign In to Sports Store</h4>
+        <p class="text-secondary small">Select your portal role and enter your credentials below.</p>
+      </div>
+
+      <!-- Role Tabs -->
+      <div class="auth-role-tabs">
+        <button type="button" class="auth-tab-btn active" id="tab-user" onclick="switchRole('user')">
+          <i class="fa-solid fa-user"></i> Athlete / User
+        </button>
+        <button type="button" class="auth-tab-btn" id="tab-admin" onclick="switchRole('admin')">
+          <i class="fa-solid fa-shield-halved"></i> Store Admin
+        </button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" onsubmit="handleLoginSubmit(event)">
+        <input type="hidden" id="selected-role" value="user">
+
+        <div class="auth-input-group">
+          <label for="login-email">Email Address <span class="text-danger">*</span></label>
+          <input type="email" id="login-email" class="form-control" placeholder="name@gmail.com" required>
+        </div>
+
+        <div class="auth-input-group">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <label for="login-password" class="mb-0">Password <span class="text-danger">*</span></label>
+            <a href="404.html" class="text-secondary text-decoration-none extra-small" style="font-size: 0.8rem;">Forgot Password?</a>
+          </div>
+          <div class="position-relative">
+            <input type="password" id="login-password" class="form-control pe-5" placeholder="••••••••" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&#]).{8,}" title="Must contain at least 8 characters, including 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character (@$!%*?&#)">
+            <button type="button" id="toggle-password-btn" onclick="togglePasswordVisibility()" class="btn text-secondary position-absolute top-50 end-0 translate-middle-y me-2 border-0 bg-transparent p-1" aria-label="Toggle password visibility">
+              <i id="toggle-password-icon" class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+          <small class="text-secondary extra-small d-block mt-1" style="font-size: 0.72rem;">Strong password required (min 8 chars, 1 uppercase, 1 lowercase, 1 number, 1 special char @$!%*?&#)</small>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-between mb-4">
+          <div class="form-check">
+            <input class="form-check-input bg-dark border-secondary" type="checkbox" id="remember-me" required>
+            <label class="form-check-label text-secondary small" for="remember-me">
+              Remember me <span class="text-danger">*</span>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-light w-100 py-2.5 fw-bold rounded-3">
+          Sign In to Portal <i class="fa-solid fa-right-to-bracket ms-1"></i>
+        </button>
+      </form>
+
+      <!-- Footer Callout -->
+      <div class="text-center mt-4 pt-3 border-top border-secondary border-opacity-25">
+        <span class="text-secondary small">Don't have an account?</span>
+        <a href="signup.html" class="text-white fw-bold text-decoration-none small ms-1">Create Account</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JS Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function switchRole(role) {
+      document.getElementById('selected-role').value = role;
+      if (role === 'user') {
+        document.getElementById('tab-user').classList.add('active');
+        document.getElementById('tab-admin').classList.remove('active');
+      } else {
+        document.getElementById('tab-admin').classList.add('active');
+        document.getElementById('tab-user').classList.remove('active');
+      }
+    }
+
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById('login-password');
+      const toggleIcon = document.getElementById('toggle-password-icon');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleIcon.classList.remove('fa-eye');
+        toggleIcon.classList.add('fa-eye-slash');
+      } else {
+        passwordInput.type = 'password';
+        toggleIcon.classList.remove('fa-eye-slash');
+        toggleIcon.classList.add('fa-eye');
+      }
+    }
+
+    function handleLoginSubmit(event) {
+      event.preventDefault();
+      
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      const rememberMe = document.getElementById('remember-me').checked;
+
+      if (!rememberMe) {
+        alert('Please check "Remember me" before proceeding.');
+        return;
+      }
+
+      const strongPasswordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&#]).{8,}$/;
+      if (!strongPasswordRegex.test(password)) {
+        alert('Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character (@$!%*?&#).');
+        return;
+      }
+
+      const role = document.getElementById('selected-role').value;
+      if (role === 'admin') {
+        window.location.href = 'admin-dashboard.html';
+      } else {
+        window.location.href = 'user-dashboard.html';
+      }
+    }
+  </script>
+</body>
+</html>

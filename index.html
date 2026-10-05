@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Store | Premium Multi-Sport Gear & Apparel</title>
+  <meta name="description" content="Elevate your athletic performance. Premium sports gear, high-tech footwear, compression apparel, and championship equipment across football, basketball, tennis, running, and fitness.">
+
+  <!-- Favicon Logo -->
+  <link rel="icon" type="image/webp" href="assets/images/logoStackly.webp">
+
+  <!-- CDNs -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- PRELOADER OVERLAY -->
+  <div id="preloader-overlay" class="preloader-overlay">
+    <div class="preloader-wrapper">
+      <div class="preloader-graphics-stage">
+        <svg class="preloader-svg-graphic" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="44" fill="none" stroke="#2b2b2b" stroke-width="4"></circle>
+          <circle cx="50" cy="50" r="44" fill="none" stroke="#ffffff" stroke-width="4" stroke-dasharray="70 180" stroke-linecap="round"></circle>
+        </svg>
+        <img src="assets/images/logoStackly.webp" alt="Logo" class="preloader-icon" style="height: 38px; width: auto; object-fit: contain;">
+      </div>
+      <div class="preloader-status-text">INITIALIZING SPORTS STORE...</div>
+      <div class="preloader-bar-bg">
+        <div id="preloader-bar-fill" class="preloader-bar-fill"></div>
+      </div>
+      <div id="preloader-percent-label" class="preloader-percent-label">0%</div>
+    </div>
+  </div>
+
+  <!-- GLOBAL STICKY HEADER -->
+  <header class="apex-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/images/logoStackly.webp" alt="Logo" style="height: 45px; width: auto;">
+      </a>
+
+      <nav class="d-none d-lg-block">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="shop.html" class="nav-link">Shop Store</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="blog.html" class="nav-link">Guides & Blog</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="login.html" class="nav-link text-white fw-semibold me-3 d-none d-lg-inline-block">Login</a>
+        <a href="signup.html" class="btn-apex btn-apex-primary me-2 d-none d-md-inline-flex">
+          Get Started <i class="fa-solid fa-arrow-right ms-1"></i>
+        </a>
+        <button id="hamburger-btn" class="hamburger-btn d-lg-none" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION MENU OVERLAY -->
+  <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+    <div class="mobile-menu-header">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/images/logoStackly.webp" alt="Logo" style="height: 40px; width: auto;">
+      </a>
+      <button id="mobile-menu-close" class="btn text-light" style="font-size: 1.5rem;"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" class="mobile-nav-link active">Home</a></li>
+      <li><a href="shop.html" class="mobile-nav-link">Shop Store</a></li>
+      <li><a href="about.html" class="mobile-nav-link">About Us</a></li>
+      <li><a href="blog.html" class="mobile-nav-link">Guides & Blog</a></li>
+      <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+      <li><a href="login.html" class="mobile-nav-link">Login</a></li>
+    </ul>
+    <div class="mt-auto">
+      <a href="signup.html" class="btn-apex btn-apex-primary w-100 py-3 text-center">Get Started <i class="fa-solid fa-arrow-right ms-1"></i></a>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-bg-img hero-bg-animated"></div>
+    <div class="hero-bg-overlay"></div>
+    <div class="container hero-content">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="section-tag anim-fade-in-up anim-delay-1">
+            <span class="dot pulse-dot-anim"></span> Elite Performance Gear
+          </div>
+          <h1 class="hero-title anim-fade-in-left anim-delay-2">
+            GEAR UP FOR <br>
+            <span class="gradient-text">NEXT-LEVEL</span> <br>
+            CHAMPIONSHIPS
+          </h1>
+          <p class="hero-subtitle anim-fade-in-up anim-delay-3">
+            Engineered equipment, high-tech footwear, and moisture-wicking apparel designed for serious athletes across every discipline.
+          </p>
+          <div class="hero-cta-group anim-fade-in-up anim-delay-4">
+            <a href="404.html" class="btn-apex btn-apex-primary">
+              <i class="fa-solid fa-bag-shopping"></i> Explore Collection
+            </a>
+            <a href="404.html" class="btn-apex btn-apex-outline">
+              <i class="fa-solid fa-play"></i> Watch Tech Specs
+            </a>
+          </div>
+          <div class="hero-stats anim-fade-in-up anim-delay-5">
+            <div class="stat-item">
+              <div class="stat-number">2,500<span>+</span></div>
+              <div class="stat-label">Pro Products</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">99.4<span>%</span></div>
+              <div class="stat-label">Rating Score</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">24<span>/7</span></div>
+              <div class="stat-label">Express Delivery</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="hero-showcase anim-fade-in-right anim-delay-2">
+            <div class="hero-main-card hero-main-card-animated">
+              <img src="assets/images/hero-main.webp" alt="Athlete Store Showcase">
+            </div>
+            <div class="hero-floating-card hero-floating-card-1 float-item">
+              <div class="floating-icon"><i class="fa-solid fa-award"></i></div>
+              <div class="floating-text">
+                <strong>FIFA & ITF Certified</strong>
+                <span>Official Match Standards</span>
+              </div>
+            </div>
+            <div class="hero-floating-card hero-floating-card-2 float-item" style="animation-delay: 2s;">
+              <div class="floating-icon" style="background: #ffffff; color: #2b2b2b;"><i class="fa-solid fa-fire"></i></div>
+              <div class="floating-text">
+                <strong>Special Discount</strong>
+                <span>Up to 30% OFF this week</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES SECTION -->
+  <section class="section-padding bg-dark-secondary">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag"><span class="dot"></span> Multi-Sport Marketplace</div>
+        <h2 class="section-title">FEATURED CATEGORIES</h2>
+        <p class="section-subtitle">Discover specialized equipment engineered for peak biomechanical performance.</p>
+      </div>
+
+      <div class="row" id="categories-grid">
+        <!-- Rendered dynamically via js/main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW SECTION 1: INTERACTIVE GEAR FINDER WIDGET -->
+  <section class="section-padding" style="background: linear-gradient(180deg, #1c1c1c 0%, #252525 100%); border-top: 1px solid #3d3d3d; border-bottom: 1px solid #3d3d3d;">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-5 mb-4 mb-lg-0">
+          <div class="section-tag"><span class="dot"></span> AI Recommendation Engine</div>
+          <h2 class="section-title text-start mb-3">FIND YOUR PERFECT SPORTS GEAR</h2>
+          <p class="text-muted mb-4">
+            Select your discipline and primary performance objective to get tailored equipment recommendations tested by pro athletes.
+          </p>
+          <div class="d-flex gap-3">
+            <div>
+              <h4 class="fw-bold text-light mb-0">100%</h4>
+              <span class="text-muted small">Fit Match Guarantee</span>
+            </div>
+            <div class="border-start border-secondary ps-3">
+              <h4 class="fw-bold text-light mb-0">2 Min</h4>
+              <span class="text-muted small">Quick Assessment</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="p-4 rounded-4" style="background: #2b2b2b; border: 1px solid #3d3d3d; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <form id="gear-finder-form">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label text-light small fw-bold">Select Sport Discipline</label>
+                  <select id="finder-sport" class="form-select bg-dark text-light border-secondary p-3">
+                    <option value="Tennis">Tennis</option>
+                    <option value="Football">Football</option>
+                    <option value="Basketball">Basketball</option>
+                    <option value="Running">Running</option>
+                    <option value="Fitness">Fitness & Gym</option>
+                    <option value="Swimming">Swimming</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label text-light small fw-bold">Primary Athletic Goal</label>
+                  <select id="finder-goal" class="form-select bg-dark text-light border-secondary p-3">
+                    <option value="Maximum Speed">Maximum Speed & Agility</option>
+                    <option value="Endurance">Endurance & Comfort</option>
+                    <option value="Power Output">Power & Impact Force</option>
+                    <option value="Injury Recovery">Injury Prevention & Support</option>
+                  </select>
+                </div>
+                <div class="col-12 mt-4">
+                  <button type="submit" class="btn-apex btn-apex-primary w-100 py-3 fs-6">
+                    <i class="fa-solid fa-sliders me-2"></i> Recommend Matching Gear
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS SECTION -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-end mb-5 flex-wrap gap-3">
+        <div>
+          <div class="section-tag"><span class="dot"></span> Hand-Picked For You</div>
+          <h2 class="section-title mb-0">BEST SELLING GEAR</h2>
+        </div>
+        <a href="shop.html" class="btn-apex btn-apex-outline">
+          View All Products <i class="fa-solid fa-arrow-right ms-1"></i>
+        </a>
+      </div>
+
+      <div class="row" id="featured-products-grid">
+        <!-- Rendered dynamically via js/main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- DEAL OF THE DAY SECTION -->
+  <section class="section-padding deal-section">
+    <div class="container">
+      <div class="deal-card">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="section-tag"><span class="dot"></span> Flash Deal of the Day</div>
+            <h2 class="display-5 fw-bold text-light mb-3">VORTEX CARBON RUNNER</h2>
+            <p class="text-muted mb-4">
+              Equipped with 100% full-length carbon fibre propulsion plate and hyper-resilient nitro foam midsole. Limited stock drop!
+            </p>
+
+            <div class="timer-box">
+              <div class="timer-unit">
+                <div class="timer-num" id="timer-hours">14</div>
+                <div class="timer-label">Hours</div>
+              </div>
+              <div class="timer-unit">
+                <div class="timer-num" id="timer-mins">45</div>
+                <div class="timer-label">Mins</div>
+              </div>
+              <div class="timer-unit">
+                <div class="timer-num" id="timer-secs">20</div>
+                <div class="timer-label">Secs</div>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-center gap-3">
+              <span class="fs-2 fw-bold text-light">$199.99</span>
+              <span class="fs-5 text-muted text-decoration-line-through">$249.99</span>
+              <span class="badge bg-danger p-2 fs-6">SAVE 20%</span>
+            </div>
+
+            <a href="404.html" class="btn-apex btn-apex-orange mt-4 d-inline-flex">
+              <i class="fa-solid fa-bolt me-2"></i> Grab Deal Now
+            </a>
+          </div>
+
+          <div class="col-lg-6 text-center">
+            <img src="assets/images/prod-running-shoes.webp" alt="Vortex Carbon Runner" class="img-fluid rounded-4 shadow-lg border border-secondary" style="max-height: 380px; object-fit: cover;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW SECTION 2: ATHLETE REVIEWS & TESTIMONIALS -->
+  <section class="section-padding bg-dark-secondary" style="border-top: 1px solid #3d3d3d; border-bottom: 1px solid #3d3d3d;">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag"><span class="dot"></span> Verified Athlete Reviews</div>
+        <h2 class="section-title">CHAMPIONS TRUST OUR GEAR</h2>
+        <p class="section-subtitle">Hear from professional athletes and trainers who rely on our high-performance equipment.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="p-4 rounded-4 h-100 d-flex flex-column justify-content-between" style="background: #2b2b2b; border: 1px solid #3d3d3d;">
+            <div>
+              <div class="d-flex align-items-center gap-1 text-light mb-3">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text-light small mb-4" style="line-height: 1.6;">
+                "The Apex Elite Carbon Tennis Racket completely transformed my baseline topspin velocity. Incredible dampening and frame stiffness!"
+              </p>
+            </div>
+            <div class="d-flex align-items-center gap-3 pt-3 border-top border-secondary">
+              <div class="rounded-circle bg-dark text-light fw-bold d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; border: 1px solid #d4d4d4;">
+                MC
+              </div>
+              <div>
+                <h6 class="mb-0 text-light fw-bold">Marcus Chen</h6>
+                <span class="text-muted small">Pro Tennis Competitor • ITF Tour</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="p-4 rounded-4 h-100 d-flex flex-column justify-content-between" style="background: #2b2b2b; border: 1px solid #3d3d3d;">
+            <div>
+              <div class="d-flex align-items-center gap-1 text-light mb-3">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text-light small mb-4" style="line-height: 1.6;">
+                "The carbon plate running shoes shaved 4 minutes off my marathon personal record. Super responsive bounce and zero arch fatigue!"
+              </p>
+            </div>
+            <div class="d-flex align-items-center gap-3 pt-3 border-top border-secondary">
+              <div class="rounded-circle bg-dark text-light fw-bold d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; border: 1px solid #d4d4d4;">
+                SK
+              </div>
+              <div>
+                <h6 class="mb-0 text-light fw-bold">Sophia Keller</h6>
+                <span class="text-muted small">Marathon Runner • National Team</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="p-4 rounded-4 h-100 d-flex flex-column justify-content-between" style="background: #2b2b2b; border: 1px solid #3d3d3d;">
+            <div>
+              <div class="d-flex align-items-center gap-1 text-light mb-3">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text-light small mb-4" style="line-height: 1.6;">
+                "We outfitted our entire basketball academy with HyperGrip shoes and match balls. Customer support and delivery speeds are unparalleled."
+              </p>
+            </div>
+            <div class="d-flex align-items-center gap-3 pt-3 border-top border-secondary">
+              <div class="rounded-circle bg-dark text-light fw-bold d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; border: 1px solid #d4d4d4;">
+                DR
+              </div>
+              <div>
+                <h6 class="mb-0 text-light fw-bold">David Reynolds</h6>
+                <span class="text-muted small">Head Coach • Apex Basketball Academy</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORE HIGHLIGHTS & ADVANTAGES (CLEARLY STYLED CARDS) -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="feature-card">
+            <i class="fa-solid fa-truck-fast feature-card-icon"></i>
+            <h5 class="feature-card-title">Fast Express Shipping</h5>
+            <p class="feature-card-text">Free dispatch on all orders over $99</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="feature-card">
+            <i class="fa-solid fa-shield-halved feature-card-icon"></i>
+            <h5 class="feature-card-title">Authenticity Guaranteed</h5>
+            <p class="feature-card-text">100% genuine brand manufacturer warranty</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="feature-card">
+            <i class="fa-solid fa-rotate-left feature-card-icon"></i>
+            <h5 class="feature-card-title">30 Days Easy Return</h5>
+            <p class="feature-card-text">No-hassle returns and instant refunds</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="feature-card">
+            <i class="fa-solid fa-headset feature-card-icon"></i>
+            <h5 class="feature-card-title">Pro Support 24/7</h5>
+            <p class="feature-card-text">Dedicated sports gear specialist advisory</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW SECTION 3: OFFICIAL BRAND PARTNERS SHOWCASE -->
+  <section class="section-padding pt-0">
+    <div class="container">
+      <div class="p-4 rounded-4 text-center" style="background: #2b2b2b; border: 1px solid #3d3d3d;">
+        <div class="section-tag mb-3"><span class="dot"></span> Official Manufacturers</div>
+        <h4 class="text-light fw-bold mb-4">POWERED BY GLOBAL SPORTS INNOVATORS</h4>
+        <div class="row align-items-center justify-content-center g-4">
+          <div class="col-6 col-md-2">
+            <span class="fs-5 fw-bold text-light opacity-75"><i class="fa-solid fa-bolt me-1"></i> NIKE TECH</span>
+          </div>
+          <div class="col-6 col-md-2">
+            <span class="fs-5 fw-bold text-light opacity-75"><i class="fa-solid fa-shield me-1"></i> ADIDAS</span>
+          </div>
+          <div class="col-6 col-md-2">
+            <span class="fs-5 fw-bold text-light opacity-75"><i class="fa-solid fa-dumbbell me-1"></i> ARMOUR</span>
+          </div>
+          <div class="col-6 col-md-2">
+            <span class="fs-5 fw-bold text-light opacity-75"><i class="fa-solid fa-water me-1"></i> SPEEDO</span>
+          </div>
+          <div class="col-6 col-md-2">
+            <span class="fs-5 fw-bold text-light opacity-75"><i class="fa-solid fa-compact-disc me-1"></i> WILSON</span>
+          </div>
+          <div class="col-6 col-md-2">
+            <span class="fs-5 fw-bold text-light opacity-75"><i class="fa-solid fa-satellite-dish me-1"></i> GARMIN</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="apex-footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 mb-4 mb-lg-0">
+          <a href="index.html" class="brand-logo mb-3 d-inline-block">
+            <img src="assets/images/logoStackly.webp" alt="Logo" style="height: 45px; width: auto;">
+          </a>
+          <p class="text-muted small pe-lg-4">
+            The premier online destination for championship-tier sports equipment, apparel, and athletic footwear. Built for endurance, speed, and victory.
+          </p>
+          <div class="social-links">
+            <a href="404.html" class="icon-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="404.html" class="icon-btn" title="X Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="404.html" class="icon-btn" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="404.html" class="icon-btn" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-4 footer-col">
+          <h5>Shop Categories</h5>
+          <ul class="footer-links">
+            <li><a href="404.html">Sports Equipment</a></li>
+            <li><a href="404.html">Athletic Footwear</a></li>
+            <li><a href="404.html">Compression Apparel</a></li>
+            <li><a href="404.html">Tech Accessories</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-4 footer-col">
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop Store</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Guides & Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-4 footer-col">
+          <h5>Newsletter</h5>
+          <p class="text-muted small mb-3">Subscribe to get exclusive drops, discount vouchers, and pro gear reviews.</p>
+          <form onsubmit="event.preventDefault(); window.location.href='404.html';" class="d-flex gap-2">
+            <input type="email" class="form-control bg-dark text-light border-secondary" required placeholder="Enter your email (e.g. name@gmail.com)">
+            <button type="submit" class="btn-apex btn-apex-primary px-3" title="Subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Sports Store Inc. All rights reserved.</div>
+        <div class="d-flex gap-3">
+          <a href="404.html" class="text-muted">Privacy Policy</a>
+          <a href="404.html" class="text-muted">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/products-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

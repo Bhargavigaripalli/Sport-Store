@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account - Sports Store Platform</title>
+  <meta name="description" content="Register your Sports Store account to unlock member rewards, order tracking, and exclusive performance gear access.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/webp" href="assets/images/logoStackly.webp">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="bg-dark text-light">
+
+  <!-- PRELOADER OVERLAY -->
+  <div id="preloader-overlay" class="preloader-overlay">
+    <div class="preloader-wrapper">
+      <div class="preloader-graphics-stage">
+        <svg class="preloader-svg-graphic" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="44" fill="none" stroke="#2b2b2b" stroke-width="4"></circle>
+          <circle cx="50" cy="50" r="44" fill="none" stroke="#ffffff" stroke-width="4" stroke-dasharray="70 180" stroke-linecap="round"></circle>
+        </svg>
+        <img src="assets/images/logoStackly.webp" alt="Logo" class="preloader-icon" style="height: 38px; width: auto; object-fit: contain;">
+      </div>
+      <div class="preloader-status-text">INITIALIZING SPORTS STORE ACCOUNT...</div>
+      <div class="preloader-bar-bg">
+        <div id="preloader-bar-fill" class="preloader-bar-fill"></div>
+      </div>
+      <div id="preloader-percent-label" class="preloader-percent-label">0%</div>
+    </div>
+  </div>
+
+  <!-- AUTHENTICATION WRAPPER -->
+  <div class="auth-wrapper">
+    <div class="auth-card auth-card-lg">
+      
+      <!-- Top Back Navigation & Logo -->
+      <div class="auth-logo-header">
+        <div class="mb-3 text-start">
+          <a href="index.html" class="text-secondary text-decoration-none small">
+            <i class="fa-solid fa-arrow-left me-1"></i> Back to Store
+          </a>
+        </div>
+        <a href="index.html" class="d-inline-block">
+          <img src="assets/images/logoStackly.webp" alt="Sports Store Logo" style="height: 52px; width: auto;">
+        </a>
+        <h4 class="fw-bold mt-3 text-white">Create Your Account</h4>
+        <p class="text-secondary small">Join Sports Store to manage orders, earn athlete points, and streamline checkout.</p>
+      </div>
+
+      <!-- Registration Form -->
+      <form id="signup-form" onsubmit="handleSignupSubmit(event)">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="auth-input-group">
+              <label for="signup-name">Full Name <span class="text-danger">*</span></label>
+              <input type="text" id="signup-name" class="form-control" placeholder="AlexMorgan" required maxlength="16" pattern="[A-Za-z]{1,16}" onkeydown="if(event.key===' ') return false;" oninput="this.value = this.value.replace(/[^A-Za-z]/g, '')" title="Only alphabets allowed, maximum 16 letters, no spaces">
+              <small class="text-secondary extra-small d-block mt-1" style="font-size: 0.72rem;">Alphabets only, max 16 letters, no spaces</small>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="auth-input-group">
+              <label for="signup-email">Email Address <span class="text-danger">*</span></label>
+              <input type="email" id="signup-email" class="form-control" placeholder="alex@gmail.com" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="auth-input-group">
+              <label for="signup-phone">Phone Number <span class="text-danger">*</span></label>
+              <input type="tel" id="signup-phone" class="form-control" placeholder="9876543210" required maxlength="10" pattern="[0-9]{1,10}" oninput="this.value = this.value.replace(/[^0-9]/g, '')" title="Only numbers allowed, maximum 10 digits">
+              <small class="text-secondary extra-small d-block mt-1" style="font-size: 0.72rem;">Numbers only, max 10 digits</small>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="auth-input-group">
+              <label for="signup-role">Account Type <span class="text-danger">*</span></label>
+              <select id="signup-role" class="form-select" required>
+                <option value="user" selected>Customer / Athlete Account</option>
+                <option value="admin">Store Administrator Account</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="auth-input-group">
+              <label for="signup-password">Password <span class="text-danger">*</span></label>
+              <div class="position-relative">
+                <input type="password" id="signup-password" class="form-control pe-5" placeholder="••••••••" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&#]).{8,}" title="Must contain at least 8 characters, including 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character (@$!%*?&#)">
+                <button type="button" onclick="toggleFieldVisibility('signup-password', 'toggle-pass-icon')" class="btn text-secondary position-absolute top-50 end-0 translate-middle-y me-2 border-0 bg-transparent p-1">
+                  <i id="toggle-pass-icon" class="fa-solid fa-eye"></i>
+                </button>
+              </div>
+              <small class="text-secondary extra-small d-block mt-1" style="font-size: 0.72rem;">Strong password required (min 8 chars, 1 uppercase, 1 lowercase, 1 number, 1 special char @$!%*?&#)</small>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="auth-input-group">
+              <label for="signup-confirm">Confirm Password <span class="text-danger">*</span></label>
+              <div class="position-relative">
+                <input type="password" id="signup-confirm" class="form-control pe-5" placeholder="••••••••" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&#]).{8,}">
+                <button type="button" onclick="toggleFieldVisibility('signup-confirm', 'toggle-confirm-icon')" class="btn text-secondary position-absolute top-50 end-0 translate-middle-y me-2 border-0 bg-transparent p-1">
+                  <i id="toggle-confirm-icon" class="fa-solid fa-eye"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-check mb-4">
+          <input class="form-check-input bg-dark border-secondary" type="checkbox" id="terms-agree" required>
+          <label class="form-check-label text-secondary small" for="terms-agree">
+            I agree to the <a href="404.html" class="text-light text-decoration-underline">Terms of Service</a> and <a href="404.html" class="text-light text-decoration-underline">Privacy Policy</a> <span class="text-danger">*</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-light w-100 py-2.5 fw-bold rounded-3">
+          Create Account & Get Started <i class="fa-solid fa-arrow-right ms-1"></i>
+        </button>
+      </form>
+
+      <!-- Footer Callout -->
+      <div class="text-center mt-4 pt-3 border-top border-secondary border-opacity-25">
+        <span class="text-secondary small">Already have an account?</span>
+        <a href="login.html" class="text-white fw-bold text-decoration-none small ms-1">Sign In</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JS Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function toggleFieldVisibility(inputId, iconId) {
+      const input = document.getElementById(inputId);
+      const icon = document.getElementById(iconId);
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      }
+    }
+
+    function handleSignupSubmit(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('signup-name').value;
+      const phone = document.getElementById('signup-phone').value;
+      const pass = document.getElementById('signup-password').value;
+      const confirm = document.getElementById('signup-confirm').value;
+      const terms = document.getElementById('terms-agree').checked;
+
+      if (!/^[A-Za-z]{1,16}$/.test(name)) {
+        alert('Full Name must contain only alphabets (no spaces) and a maximum of 16 letters.');
+        return;
+      }
+
+      if (!/^[0-9]{1,10}$/.test(phone)) {
+        alert('Phone Number must contain only numbers and a maximum of 10 digits.');
+        return;
+      }
+
+      const strongPasswordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&#]).{8,}$/;
+      if (!strongPasswordRegex.test(pass)) {
+        alert('Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character (@$!%*?&#).');
+        return;
+      }
+
+      if (pass !== confirm) {
+        alert('Passwords do not match. Please verify your password entry.');
+        return;
+      }
+
+      if (!terms) {
+        alert('You must agree to the Terms of Service and Privacy Policy.');
+        return;
+      }
+
+      // Render to login page after entering all details
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html>

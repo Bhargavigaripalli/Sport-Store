@@ -1,0 +1,263 @@
+/* ==========================================================================
+   SPORTS STORE PLATFORM - RESPONSIVE STYLESHEET
+   ========================================================================== */
+
+/* Large Desktop & Wide Screens */
+@media (max-width: 1200px) {
+  .hero-title {
+    font-size: 3.4rem;
+  }
+}
+
+/* Medium Desktop & Tablets (Landscape) */
+@media (max-width: 992px) {
+  .nav-menu {
+    display: none !important;
+  }
+
+  .hamburger-btn {
+    display: flex !important;
+  }
+
+  .hero-section {
+    padding-top: 110px;
+    text-align: center;
+  }
+
+  .hero-subtitle {
+    margin: 0 auto 30px auto;
+  }
+
+  .hero-cta-group {
+    justify-content: center;
+  }
+
+  .hero-stats {
+    justify-content: center;
+  }
+
+  .hero-showcase {
+    margin-top: 40px;
+  }
+
+  .shop-layout {
+    flex-direction: column;
+  }
+
+  .shop-sidebar {
+    margin-bottom: 30px;
+  }
+
+  /* Display Typography Responsiveness */
+  .display-3 {
+    font-size: 2.5rem !important;
+    word-wrap: break-word;
+  }
+
+  .display-4 {
+    font-size: 2.2rem !important;
+    word-wrap: break-word;
+  }
+
+  .display-6 {
+    font-size: 1.75rem !important;
+    word-wrap: break-word;
+  }
+
+  .about-hero-section, .contact-hero-section {
+    padding-top: 120px !important;
+  }
+
+  /* Dashboard Mobile Drawer & Responsiveness */
+  .dashboard-container {
+    flex-direction: column !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  .dashboard-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: -100% !important;
+    width: 280px !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    z-index: 2000 !important;
+    background-color: #0a0a0a !important;
+    transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.9) !important;
+    border-right: 1px solid #333333 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .dashboard-sidebar.show,
+  .dashboard-sidebar.active {
+    left: 0 !important;
+  }
+
+  .dashboard-main {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 20px 16px !important;
+    min-height: auto !important;
+  }
+
+  .dashboard-main header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+
+  .dashboard-main header > div {
+    width: 100% !important;
+  }
+
+  .dashboard-main header .d-flex {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    flex-wrap: wrap !important;
+  }
+
+  .table-responsive {
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .table-responsive .table {
+    min-width: 580px !important;
+  }
+}
+
+/* Small Tablets & Mobile Devices (Portrait) */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.2rem !important;
+  }
+
+  .section-title {
+    font-size: 1.6rem !important;
+  }
+
+  .display-3 {
+    font-size: 1.95rem !important;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+
+  .display-4 {
+    font-size: 1.8rem !important;
+    line-height: 1.25;
+  }
+
+  .display-6 {
+    font-size: 1.45rem !important;
+    line-height: 1.25;
+  }
+
+  .about-hero-section, .contact-hero-section {
+    padding-top: 115px !important;
+  }
+
+  /* Section padding normalization */
+  .section-padding {
+    padding-top: 45px !important;
+    padding-bottom: 45px !important;
+    scroll-margin-top: 90px;
+  }
+
+  /* About & Contact Specific Responsiveness */
+  .about-grant-box {
+    padding: 1.25rem !important;
+  }
+
+  /* Cart & Table Responsiveness */
+  .cart-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  /* Auth Card Padding */
+  .auth-card, .auth-card-lg {
+    padding: 24px 18px !important;
+    border-radius: 12px !important;
+  }
+}
+
+/* Extra Small Phones (< 480px) */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.8rem !important;
+  }
+
+  .display-3 {
+    font-size: 1.6rem !important;
+  }
+
+  .display-4 {
+    font-size: 1.5rem !important;
+  }
+
+  .display-6 {
+    font-size: 1.3rem !important;
+  }
+
+  .about-hero-section, .contact-hero-section {
+    padding-top: 110px !important;
+  }
+
+  .section-tag {
+    font-size: 0.72rem !important;
+    padding: 4px 12px !important;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-apex {
+    width: 100%;
+  }
+
+  .hero-floating-card {
+    display: none !important;
+  }
+
+  .mobile-menu-overlay {
+    max-width: 100% !important;
+    padding: 20px 16px !important;
+  }
+
+  /* Dashboard Extra Small Mobile Clamps */
+  .kpi-card {
+    padding: 14px 12px !important;
+  }
+
+  .kpi-val-mint, .kpi-val-gold, .kpi-val-white {
+    font-size: 1.45rem !important;
+    word-break: break-word;
+  }
+
+  #user-header-title, #admin-header-title {
+    font-size: 1.3rem !important;
+    word-break: break-word;
+    line-height: 1.25;
+  }
+
+  .toast-container {
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+  }
+}

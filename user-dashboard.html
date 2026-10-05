@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Control Center - Sports Store Platform</title>
+  <meta name="description" content="Sports Store user control center for live gear dispatch, order tracking, and equipment inventory management.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/webp" href="assets/images/logoStackly.webp">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="bg-black text-white antialiased">
+
+  <!-- PRELOADER OVERLAY -->
+  <div id="preloader-overlay" class="preloader-overlay">
+    <div class="preloader-wrapper">
+      <div class="preloader-graphics-stage">
+        <svg class="preloader-svg-graphic" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="44" fill="none" stroke="#2b2b2b" stroke-width="4"></circle>
+          <circle cx="50" cy="50" r="44" fill="none" stroke="#ffffff" stroke-width="4" stroke-dasharray="70 180" stroke-linecap="round"></circle>
+        </svg>
+        <img src="assets/images/logoStackly.webp" alt="Logo" class="preloader-icon" style="height: 38px; width: auto; object-fit: contain;">
+      </div>
+      <div class="preloader-status-text">CONNECTING SPORTS STORE ENGINE...</div>
+      <div class="preloader-bar-bg">
+        <div id="preloader-bar-fill" class="preloader-bar-fill"></div>
+      </div>
+      <div id="preloader-percent-label" class="preloader-percent-label">0%</div>
+    </div>
+  </div>
+
+  <!-- MOBILE DASHBOARD TOPBAR -->
+  <div class="d-lg-none d-flex align-items-center justify-content-between px-3 py-2 bg-dark border-bottom border-secondary border-opacity-25 sticky-top z-3">
+    <a href="index.html" class="d-inline-block">
+      <img src="assets/images/logoStackly.webp" alt="Sports Store Logo" style="height: 32px; width: auto;">
+    </a>
+    <button class="btn text-white p-1 fs-4" onclick="toggleDashboardSidebar()" aria-label="Toggle Dashboard Menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+
+  <!-- DASHBOARD CONTAINER -->
+  <div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <aside class="dashboard-sidebar" id="dashboard-sidebar">
+      <!-- Top Logo Header -->
+      <div class="d-flex align-items-center justify-content-between mb-4 pb-3 border-bottom border-secondary border-opacity-25">
+        <a href="index.html" class="d-inline-block">
+          <img src="assets/images/logoStackly.webp" alt="Sports Store Logo" style="height: 38px; width: auto;">
+        </a>
+        <button class="btn text-secondary d-lg-none p-1 fs-5" onclick="toggleDashboardSidebar()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- User Profile Badge -->
+      <div class="sidebar-profile-card">
+        <div class="avatar-circle">BG</div>
+        <div class="overflow-hidden">
+          <div class="text-xs fw-black text-white text-truncate" style="font-size: 0.85rem;">Bhargavi Garipalli</div>
+          <div class="extra-small fw-bold text-uppercase text-light" style="font-size: 0.65rem; letter-spacing: 0.5px;">SPORTS STORE ATHLETE</div>
+        </div>
+      </div>
+
+      <!-- Interactive Navigation List -->
+      <nav class="sidebar-nav-list">
+        <div class="sidebar-nav-item active" data-tab="overview" onclick="switchUserTab('overview')">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Overview & Sales</span>
+        </div>
+        <div class="sidebar-nav-item" data-tab="dispatch" onclick="switchUserTab('dispatch')">
+          <i class="fa-solid fa-truck-fast"></i>
+          <span>Gear Dispatch Stream</span>
+        </div>
+        <div class="sidebar-nav-item" data-tab="pos" onclick="switchUserTab('pos')">
+          <i class="fa-solid fa-basket-shopping"></i>
+          <span>Storefront POS</span>
+        </div>
+        <div class="sidebar-nav-item" data-tab="equipment" onclick="switchUserTab('equipment')">
+          <i class="fa-solid fa-dumbbell"></i>
+          <span>Equipment & Specs</span>
+        </div>
+        <div class="sidebar-nav-item" data-tab="inventory" onclick="switchUserTab('inventory')">
+          <i class="fa-solid fa-boxes-stacked"></i>
+          <span>Inventory Depletion</span>
+        </div>
+        <div class="sidebar-nav-item" data-tab="roster" onclick="switchUserTab('roster')">
+          <i class="fa-solid fa-users-gear"></i>
+          <span>Athlete & Shift Roster</span>
+        </div>
+      </nav>
+
+      <!-- Bottom Actions -->
+      <div class="pt-3 border-top border-secondary border-opacity-25 mt-auto d-flex flex-column gap-2">
+        <a href="admin-dashboard.html" class="sidebar-nav-item" style="color: #4ade80;">
+          <i class="fa-solid fa-user-shield"></i>
+          <span>Switch to Admin Console</span>
+        </a>
+        <a href="login.html" class="sidebar-nav-item" style="color: #a3a3a3;">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Sign Out</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN STAGE -->
+    <main class="dashboard-main">
+
+      <!-- TOP BAR HEADER -->
+      <header class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3 mb-4 pb-3 border-bottom border-secondary border-opacity-25">
+        <div>
+          <div class="d-inline-flex align-items-center gap-2 px-2.5 py-1 rounded-1 mb-2 bg-dark border border-secondary border-opacity-50" style="font-size: 0.68rem; font-weight: 800; color: #ffffff; text-transform: uppercase;">
+            <span class="rounded-circle bg-success" style="width: 7px; height: 7px; display: inline-block;"></span>
+            SPORTS STORE (MAIN LA WAREHOUSE)
+          </div>
+          <h1 class="fw-black text-white mb-0" id="user-header-title" style="font-size: 1.85rem; letter-spacing: -0.5px;">User / Customer Control Center</h1>
+        </div>
+
+        <!-- Top Right Action Buttons -->
+        <div class="d-flex flex-wrap flex-sm-nowrap align-items-center gap-2 w-100 w-md-auto">
+          <a href="404.html" class="btn btn-light fw-extrabold px-3 py-2 text-dark rounded-2 flex-grow-1 flex-sm-grow-0 text-center" style="font-size: 0.8rem; text-transform: uppercase;">
+            <i class="fa-solid fa-cart-plus me-1"></i> PLACE NEW GEAR ORDER
+          </a>
+          <a href="admin-dashboard.html" class="btn btn-outline-light fw-bold px-3 py-2 rounded-2 flex-grow-1 flex-sm-grow-0 text-center" style="font-size: 0.8rem; text-transform: uppercase; border-color: #444444;">
+            <i class="fa-solid fa-shield-halved me-1"></i> ADMIN VIEW
+          </a>
+        </div>
+      </header>
+
+      <!-- TAB 1: OVERVIEW & SALES (DEFAULT) -->
+      <div id="tab-view-overview" class="user-tab-content">
+        
+        <!-- KPI STAT CARDS ROW -->
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">TOTAL GEAR REVENUE</div>
+              <div class="kpi-val-white">$4,850.00</div>
+              <div class="kpi-subtext"><i class="fa-solid fa-arrow-trend-up me-1"></i> +18.4% vs last week</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">TOTAL GEAR ORDERS</div>
+              <div class="kpi-val-mint">142 Orders</div>
+              <div class="kpi-subtext-muted">Avg order: <strong class="text-white">$34.15</strong></div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">AVG DISPATCH TIME</div>
+              <div class="kpi-val-white">3.2 hrs</div>
+              <div class="kpi-subtext"><i class="fa-solid fa-circle-check me-1"></i> 0.8 hrs faster than SLA</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">GEAR RETURN RATE</div>
+              <div class="kpi-val-mint">1.5%</div>
+              <div class="kpi-subtext-muted">Optimal quality threshold</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MAIN GRID: LIVE GEAR DISPATCH + DEPLETION -->
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <div class="p-3 bg-dark rounded-3 border border-secondary border-opacity-25 h-100" style="background: #141414 !important;">
+              <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-secondary border-opacity-25">
+                <h5 class="fw-black text-white mb-0" style="font-size: 1rem; letter-spacing: 0.5px;">
+                  <i class="fa-solid fa-truck-fast text-light me-2"></i> LIVE GEAR DISPATCH & FULFILLMENT STREAM
+                </h5>
+                <span class="badge bg-black text-light border border-secondary border-opacity-25" style="font-size: 0.65rem;">REAL-TIME SYNC</span>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table table-dark table-hover align-middle mb-0" style="font-size: 0.85rem;">
+                  <thead>
+                    <tr class="text-secondary uppercase" style="font-size: 0.7rem; border-bottom: 1px solid #333333;">
+                      <th>ORDER ID</th>
+                      <th>DESTINATION</th>
+                      <th>PURCHASED GEAR ITEMS</th>
+                      <th>TIMER</th>
+                      <th>SHIPMENT STATUS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="fw-bold text-white">#SP-808</td>
+                      <td class="fw-semibold text-white">Los Angeles, CA (Station 2)</td>
+                      <td class="text-light">2x Apex Carbon Running Shoes, 1x HydroBottle 1L</td>
+                      <td class="font-monospace text-success fw-bold">03:42</td>
+                      <td><span class="badge bg-success bg-opacity-25 text-success border border-success px-2 py-1" style="font-size: 0.68rem;">PACKING (WAREHOUSE)</span></td>
+                    </tr>
+                    <tr>
+                      <td class="fw-bold text-white">#SP-809</td>
+                      <td class="fw-semibold text-white">New York, NY (Hub 1)</td>
+                      <td class="text-light">1x Stealth Performance Hoodie, 1x Pro Gloves</td>
+                      <td class="font-monospace text-warning fw-bold">01:15</td>
+                      <td><span class="badge bg-warning bg-opacity-25 text-warning border border-warning px-2 py-1" style="font-size: 0.68rem;">DISPATCHING (PASS)</span></td>
+                    </tr>
+                    <tr>
+                      <td class="fw-bold text-white">#SP-810</td>
+                      <td class="fw-semibold text-white">Chicago, IL (Station 4)</td>
+                      <td class="text-light">2x Carbon Fiber Tennis Rackets</td>
+                      <td class="font-monospace text-info fw-bold">00:45</td>
+                      <td><span class="badge bg-info bg-opacity-25 text-info border border-info px-2 py-1" style="font-size: 0.68rem;">SHIPPED (TRANSIT)</span></td>
+                    </tr>
+                    <tr>
+                      <td class="fw-bold text-white">#SP-811</td>
+                      <td class="fw-semibold text-white">Miami, FL (Hub 3)</td>
+                      <td class="text-light">1x Compression Leggings Set</td>
+                      <td class="font-monospace text-danger fw-bold">08:12</td>
+                      <td><span class="badge bg-danger bg-opacity-25 text-danger border border-danger px-2 py-1" style="font-size: 0.68rem;">RUSH DISPATCH</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="p-3 bg-dark rounded-3 border border-secondary border-opacity-25 h-100 d-flex flex-column justify-content-between" style="background: #141414 !important;">
+              <div>
+                <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-secondary border-opacity-25">
+                  <h5 class="fw-black text-white mb-0" style="font-size: 1rem; letter-spacing: 0.5px;">
+                    <i class="fa-solid fa-boxes-stacked text-light me-2"></i> EQUIPMENT INVENTORY DEPLETION
+                  </h5>
+                </div>
+                <div class="mb-3 p-2 bg-black rounded-2 border border-secondary border-opacity-25">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="fw-bold text-white small">Apex Carbon Running Shoes</span>
+                    <span class="font-monospace extra-small text-secondary"><strong class="text-white">18</strong> / 100 left</span>
+                  </div>
+                  <div class="progress-depletion-bar">
+                    <div class="progress-fill-gold" style="width: 18%;"></div>
+                  </div>
+                </div>
+                <div class="mb-3 p-2 bg-black rounded-2 border border-secondary border-opacity-25">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="fw-bold text-white small">HydroBottle 1L Insulated</span>
+                    <span class="font-monospace extra-small text-secondary"><strong class="text-white">65</strong> / 100 left</span>
+                  </div>
+                  <div class="progress-depletion-bar">
+                    <div class="progress-fill-mint" style="width: 65%;"></div>
+                  </div>
+                </div>
+                <div class="mb-3 p-2 bg-black rounded-2 border border-secondary border-opacity-25">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="fw-bold text-white small">Stealth Performance Hoodie</span>
+                    <span class="font-monospace extra-small text-danger fw-bold"><strong class="text-danger">4</strong> / 40 left (LOW)</span>
+                  </div>
+                  <div class="progress-depletion-bar">
+                    <div class="progress-fill-red" style="width: 10%;"></div>
+                  </div>
+                </div>
+              </div>
+              <a href="404.html" class="btn btn-outline-light w-100 py-2.5 fw-bold text-uppercase mt-3" style="font-size: 0.8rem; border-color: #444444;">
+                <i class="fa-solid fa-paper-plane me-1"></i> TRIGGER SUPPLIER RESTOCK PO
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TAB 2: GEAR DISPATCH STREAM -->
+      <div id="tab-view-dispatch" class="user-tab-content" style="display: none;">
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">ACTIVE SHIPMENTS</div>
+              <div class="kpi-val-mint">24 Orders</div>
+              <div class="kpi-subtext"><i class="fa-solid fa-truck me-1"></i> Expedited Freight Active</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">IN TRANSIT</div>
+              <div class="kpi-val-gold">18 Shipments</div>
+              <div class="kpi-subtext-muted">On schedule to hub</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">PENDING PACKING</div>
+              <div class="kpi-val-white">4 Orders</div>
+              <div class="kpi-subtext-muted">Warehouse stage</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">DELIVERY SLA RATE</div>
+              <div class="kpi-val-mint">98.4%</div>
+              <div class="kpi-subtext"><i class="fa-solid fa-circle-check me-1"></i> High reliability</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-dark rounded-3 border border-secondary border-opacity-25" style="background: #141414 !important;">
+          <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-secondary border-opacity-25">
+            <h5 class="fw-black text-white mb-0"><i class="fa-solid fa-truck-fast text-light me-2"></i> EXPEDITED DISPATCH STREAM LOG</h5>
+            <a href="404.html" class="btn btn-outline-light btn-sm">Export Stream</a>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle mb-0" style="font-size: 0.85rem;">
+              <thead>
+                <tr class="text-secondary uppercase">
+                  <th>SHIPMENT ID</th>
+                  <th>ATHLETE NAME</th>
+                  <th>EQUIPMENT PACKAGE</th>
+                  <th>ESTIMATED ARRIVAL</th>
+                  <th>STATUS</th>
+                  <th class="text-end">ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="fw-bold text-white">#DSP-901</td>
+                  <td>Marcus Vance</td>
+                  <td>Apex Carbon Running Shoes (Pair)</td>
+                  <td class="text-success fw-bold">Today, 4:00 PM</td>
+                  <td><span class="badge bg-success text-dark fw-bold">DISPATCHED</span></td>
+                  <td class="text-end"><a href="404.html" class="btn btn-sm btn-outline-light">Track Live</a></td>
+                </tr>
+                <tr>
+                  <td class="fw-bold text-white">#DSP-902</td>
+                  <td>Elena Rostova</td>
+                  <td>Pro Grip Gloves + Hydration Pack</td>
+                  <td class="text-warning fw-bold">Tomorrow Morning</td>
+                  <td><span class="badge bg-warning text-dark fw-bold">IN TRANSIT</span></td>
+                  <td class="text-end"><a href="404.html" class="btn btn-sm btn-outline-light">Track Live</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: STOREFRONT POS -->
+      <div id="tab-view-pos" class="user-tab-content" style="display: none;">
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">TODAY'S POS SALES</div>
+              <div class="kpi-val-mint">$2,410.00</div>
+              <div class="kpi-subtext"><i class="fa-solid fa-cash-register me-1"></i> 4 Terminals Active</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">ACTIVE REGISTERS</div>
+              <div class="kpi-val-gold">4 POS Terminals</div>
+              <div class="kpi-subtext-muted">100% online sync</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">ITEMS SCANNED</div>
+              <div class="kpi-val-white">310 SKUs</div>
+              <div class="kpi-subtext-muted">Peak hour checkout</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">AVG BASKET SIZE</div>
+              <div class="kpi-val-mint">$42.00</div>
+              <div class="kpi-subtext"><i class="fa-solid fa-arrow-trend-up me-1"></i> +8.2% vs target</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-dark rounded-3 border border-secondary border-opacity-25" style="background: #141414 !important;">
+          <h5 class="fw-black text-white mb-3"><i class="fa-solid fa-basket-shopping me-2"></i> STOREFRONT POS CASHIER REGISTER STREAM</h5>
+          <p class="text-secondary small">Live in-store barcode scans and counter transactions sync.</p>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="p-3 bg-black rounded border border-secondary border-opacity-25">
+                <h6 class="fw-bold text-white">Terminal #1 — Main Counter</h6>
+                <div class="text-secondary small">Operator: Sarah Jenkins</div>
+                <div class="text-success fw-bold mt-2">Active Transaction: #POS-1049 ($149.99)</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-3 bg-black rounded border border-secondary border-opacity-25">
+                <h6 class="fw-bold text-white">Terminal #2 — Footwear Desk</h6>
+                <div class="text-secondary small">Operator: David Miller</div>
+                <div class="text-success fw-bold mt-2">Active Transaction: #POS-1050 ($89.00)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: EQUIPMENT & SPECS -->
+      <div id="tab-view-equipment" class="user-tab-content" style="display: none;">
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">TOTAL CATALOG SKUs</div>
+              <div class="kpi-val-mint">342 SKUs</div>
+              <div class="kpi-subtext">Certified gear</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">FOOTWEAR CATEGORY</div>
+              <div class="kpi-val-gold">120 SKUs</div>
+              <div class="kpi-subtext-muted">Pro carbon series</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">APPAREL CATEGORY</div>
+              <div class="kpi-val-white">150 SKUs</div>
+              <div class="kpi-subtext-muted">Thermal & moisture</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">RACKETS & GEAR</div>
+              <div class="kpi-val-mint">72 SKUs</div>
+              <div class="kpi-subtext"><i class="fa-solid fa-shield-halved me-1"></i> Tournament approved</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-dark rounded-3 border border-secondary border-opacity-25" style="background: #141414 !important;">
+          <h5 class="fw-black text-white mb-3"><i class="fa-solid fa-dumbbell me-2"></i> EQUIPMENT PERFORMANCE TECHNICAL SPECIFICATIONS</h5>
+          <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle mb-0" style="font-size: 0.85rem;">
+              <thead>
+                <tr class="text-secondary uppercase">
+                  <th>SKU CODE</th>
+                  <th>EQUIPMENT NAME</th>
+                  <th>MATERIAL / TECH SPEC</th>
+                  <th>WEIGHT RATIO</th>
+                  <th>CERTIFICATION</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="fw-bold text-white">SKU-RUN-901</td>
+                  <td>Apex Carbon Running Shoes</td>
+                  <td>Ultra-weave carbon plate + nitrogen foam</td>
+                  <td>185g / US 10</td>
+                  <td><span class="badge bg-success text-dark fw-bold">WORLD ATHLETICS APPROVED</span></td>
+                </tr>
+                <tr>
+                  <td class="fw-bold text-white">SKU-TN-402</td>
+                  <td>Carbon Fiber Tennis Racket</td>
+                  <td>3K Carbon weave + shock damping grip</td>
+                  <td>300g unstrung</td>
+                  <td><span class="badge bg-success text-dark fw-bold">ITF CERTIFIED</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 5: INVENTORY DEPLETION -->
+      <div id="tab-view-inventory" class="user-tab-content" style="display: none;">
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">CRITICAL STOCK SKUs</div>
+              <div class="kpi-val-mint" style="color: #f87171 !important;">6 SKUs</div>
+              <div class="kpi-subtext text-danger"><i class="fa-solid fa-triangle-exclamation me-1"></i> Low threshold alert</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">RE-ORDER THRESHOLD</div>
+              <div class="kpi-val-gold">15% Level</div>
+              <div class="kpi-subtext-muted">Automated trigger</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">WAREHOUSE CAPACITY</div>
+              <div class="kpi-val-white">84% Used</div>
+              <div class="kpi-subtext-muted">LA main hub</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">STOCK TURNOVER</div>
+              <div class="kpi-val-mint">4.2x</div>
+              <div class="kpi-subtext"><i class="fa-solid fa-rotate me-1"></i> Annual velocity</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-dark rounded-3 border border-secondary border-opacity-25" style="background: #141414 !important;">
+          <h5 class="fw-black text-white mb-3"><i class="fa-solid fa-boxes-stacked me-2"></i> FULL INVENTORY STOCK DEPLETION & RESTOCK FORM</h5>
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <div class="p-3 bg-black rounded border border-secondary border-opacity-25">
+                <div class="d-flex justify-content-between mb-1">
+                  <span class="fw-bold text-white">HydroBottle 1L Insulated</span>
+                  <span class="text-danger fw-bold">8 / 100 units (CRITICAL)</span>
+                </div>
+                <div class="progress-depletion-bar"><div class="progress-fill-red" style="width: 8%;"></div></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-3 bg-black rounded border border-secondary border-opacity-25">
+                <div class="d-flex justify-content-between mb-1">
+                  <span class="fw-bold text-white">Pro Grip Training Gloves</span>
+                  <span class="text-danger fw-bold">3 / 50 units (CRITICAL)</span>
+                </div>
+                <div class="progress-depletion-bar"><div class="progress-fill-red" style="width: 6%;"></div></div>
+              </div>
+            </div>
+          </div>
+          <a href="404.html" class="btn btn-light fw-bold">Generate Automated Purchase Order</a>
+        </div>
+      </div>
+
+      <!-- TAB 6: ATHLETE & SHIFT ROSTER -->
+      <div id="tab-view-roster" class="user-tab-content" style="display: none;">
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">ACTIVE SHIFT STAFF</div>
+              <div class="kpi-val-mint">18 Staff</div>
+              <div class="kpi-subtext"><i class="fa-solid fa-circle-check me-1"></i> All stations manned</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">WAREHOUSE CREW</div>
+              <div class="kpi-val-gold">12 Team</div>
+              <div class="kpi-subtext-muted">Packing & dispatch</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">SUPPORT TEAM</div>
+              <div class="kpi-val-white">6 Agents</div>
+              <div class="kpi-subtext-muted">Customer inquiry</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">ATTENDANCE RATE</div>
+              <div class="kpi-val-mint">100%</div>
+              <div class="kpi-subtext"><i class="fa-solid fa-shield-halved me-1"></i> Perfect shift score</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-dark rounded-3 border border-secondary border-opacity-25" style="background: #141414 !important;">
+          <h5 class="fw-black text-white mb-3"><i class="fa-solid fa-users-gear me-2"></i> STORE ATHLETE & STAFF SHIFT ROSTER</h5>
+          <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle mb-0" style="font-size: 0.85rem;">
+              <thead>
+                <tr class="text-secondary uppercase">
+                  <th>STAFF NAME</th>
+                  <th>ROLE</th>
+                  <th>ASSIGNED STATION</th>
+                  <th>SHIFT HOURS</th>
+                  <th>STATUS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="fw-bold text-white">Bhargavi Garipalli</td>
+                  <td>Restaurant & Store Director</td>
+                  <td>Main Control Center</td>
+                  <td>08:00 AM - 05:00 PM</td>
+                  <td><span class="badge bg-success text-dark fw-bold">ON DUTY</span></td>
+                </tr>
+                <tr>
+                  <td class="fw-bold text-white">Alex Morgan</td>
+                  <td>Senior Fulfillment Lead</td>
+                  <td>Dispatch Station #2</td>
+                  <td>09:00 AM - 06:00 PM</td>
+                  <td><span class="badge bg-success text-dark fw-bold">ON DUTY</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JS Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function toggleDashboardSidebar() {
+      const sidebar = document.getElementById('dashboard-sidebar');
+      if (sidebar) sidebar.classList.toggle('show');
+    }
+
+    function switchUserTab(tabId) {
+      document.querySelectorAll('.sidebar-nav-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      const activeNav = document.querySelector(`[data-tab="${tabId}"]`);
+      if (activeNav) activeNav.classList.add('active');
+
+      document.querySelectorAll('.user-tab-content').forEach(view => {
+        view.style.display = 'none';
+      });
+      const selectedView = document.getElementById(`tab-view-${tabId}`);
+      if (selectedView) selectedView.style.display = 'block';
+
+      const titleMap = {
+        'overview': 'User / Customer Control Center',
+        'dispatch': 'Gear Dispatch & Fulfillment Stream',
+        'pos': 'Storefront POS & Terminal Register',
+        'equipment': 'Equipment & Performance Specifications',
+        'inventory': 'Inventory Depletion & Stock Levels',
+        'roster': 'Athlete & Staff Shift Roster'
+      };
+      const titleEl = document.getElementById('user-header-title');
+      if (titleEl && titleMap[tabId]) titleEl.textContent = titleMap[tabId];
+
+      const sidebar = document.getElementById('dashboard-sidebar');
+      if (sidebar && sidebar.classList.contains('show')) {
+        sidebar.classList.remove('show');
+      }
+    }
+  </script>
+</body>
+</html>

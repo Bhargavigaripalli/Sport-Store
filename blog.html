@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Gear Reviews & Training Guides | Sports Store</title>
+  <meta name="description" content="Explore expert sports equipment buying guides, biomechanics training tips, gear maintenance tutorials, and performance reviews.">
+
+  <!-- Favicon Logo -->
+  <link rel="icon" type="image/webp" href="assets/images/logoStackly.webp">
+
+  <!-- CDNs -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- PRELOADER OVERLAY -->
+  <div id="preloader-overlay" class="preloader-overlay">
+    <div class="preloader-wrapper">
+      <div class="preloader-graphics-stage">
+        <svg class="preloader-svg-graphic" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="44" fill="none" stroke="#2b2b2b" stroke-width="4"></circle>
+          <circle cx="50" cy="50" r="44" fill="none" stroke="#ffffff" stroke-width="4" stroke-dasharray="70 180" stroke-linecap="round"></circle>
+        </svg>
+        <img src="assets/images/logoStackly.webp" alt="Logo" class="preloader-icon" style="height: 38px; width: auto; object-fit: contain;">
+      </div>
+      <div class="preloader-status-text">INITIALIZING SPORTS STORE...</div>
+      <div class="preloader-bar-bg">
+        <div id="preloader-bar-fill" class="preloader-bar-fill"></div>
+      </div>
+      <div id="preloader-percent-label" class="preloader-percent-label">0%</div>
+    </div>
+  </div>
+
+  <!-- GLOBAL STICKY HEADER -->
+  <header class="apex-header scrolled">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/images/logoStackly.webp" alt="Logo" style="height: 45px; width: auto;">
+      </a>
+
+      <nav class="d-none d-lg-block">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="shop.html" class="nav-link">Shop Store</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="blog.html" class="nav-link active">Guides & Blog</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="login.html" class="nav-link text-white fw-semibold me-3 d-none d-lg-inline-block">Login</a>
+        <a href="signup.html" class="btn-apex btn-apex-primary me-2 d-none d-md-inline-flex">
+          Get Started <i class="fa-solid fa-arrow-right ms-1"></i>
+        </a>
+        <button id="hamburger-btn" class="hamburger-btn d-lg-none" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION MENU OVERLAY -->
+  <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+    <div class="mobile-menu-header">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/images/logoStackly.webp" alt="Logo" style="height: 40px; width: auto;">
+      </a>
+      <button id="mobile-menu-close" class="btn text-light" style="font-size: 1.5rem;"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+      <li><a href="shop.html" class="mobile-nav-link">Shop Store</a></li>
+      <li><a href="about.html" class="mobile-nav-link">About Us</a></li>
+      <li><a href="blog.html" class="mobile-nav-link active">Guides & Blog</a></li>
+      <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+      <li><a href="login.html" class="mobile-nav-link">Login</a></li>
+    </ul>
+    <div class="mt-auto">
+      <a href="signup.html" class="btn-apex btn-apex-primary w-100 py-3 text-center">Get Started <i class="fa-solid fa-arrow-right ms-1"></i></a>
+    </div>
+  </div>
+
+  <!-- BLOG BANNER -->
+  <section class="section-padding pb-4" style="padding-top: 130px; background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);">
+    <div class="container text-center">
+      <div class="section-tag mb-3"><span class="dot"></span> Knowledge Hub</div>
+      <h1 class="display-4 fw-bold text-light mb-2">GEAR GUIDES & ATHLETE INSIGHTS</h1>
+      <p class="text-muted fs-5">Deep dives into sports gear selection, biomechanics, recovery, and peak conditioning.</p>
+    </div>
+  </section>
+
+  <!-- NEW SECTION 1: FEATURED TRENDING ARTICLE HERO -->
+  <section class="section-padding pt-3 pb-5">
+    <div class="container">
+      <div class="p-4 p-lg-5 rounded-4 overflow-hidden border border-secondary" style="background: linear-gradient(135deg, #242424 0%, #2e2e2e 100%); border: 1.5px solid #ffffff !important;">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6">
+            <span class="badge bg-light text-dark fs-6 fw-bold mb-3"><i class="fa-solid fa-fire me-1"></i> Editor's Choice</span>
+            <h2 class="display-6 fw-bold text-light mb-3">THE BIOMECHANICS OF SPEED: 2026 ENERGY-RETURN FOAMS</h2>
+            <p class="text-muted mb-4 fs-6">
+              How full-length carbon propulsion plates combined with nitrogen-infused midsole foam reduce ground-contact time by 4.2% in marathon athletes.
+            </p>
+            <div class="d-flex align-items-center gap-3 mb-4">
+              <div class="rounded-circle bg-dark text-light fw-bold d-flex align-items-center justify-content-center" style="width: 42px; height: 42px; border: 1px solid #ffffff;">
+                RV
+              </div>
+              <div>
+                <h6 class="mb-0 text-light fw-bold">Dr. Raymond Vance</h6>
+                <span class="text-muted small">Chief Biomechanics Director • 6 Min Read</span>
+              </div>
+            </div>
+            <a href="404.html" class="btn-apex btn-apex-primary py-3 px-4">
+              Read Full Study <i class="fa-solid fa-arrow-right ms-2"></i>
+            </a>
+          </div>
+          <div class="col-lg-6 text-center">
+            <img src="assets/images/prod-running-shoes.webp" alt="Biomechanics Speed Study" class="img-fluid rounded-4 shadow-lg border border-secondary" style="max-height: 340px; width: 100%; object-fit: cover;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG ARTICLES GRID -->
+  <section class="section-padding pt-0">
+    <div class="container">
+      <div class="section-header text-start mb-4">
+        <div class="section-tag"><span class="dot"></span> Published Guides</div>
+        <h2 class="section-title text-start mb-0">POPULAR ATHLETIC ARTICLES</h2>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="rounded-4 overflow-hidden border border-secondary h-100 d-flex flex-column" style="background: #282828; border: 1.5px solid #444444 !important;">
+            <img src="assets/images/category-running.webp" alt="Carbon Plate Running Shoes" class="w-100" style="height: 230px; object-fit: cover; object-position: center;">
+            <div class="p-4 d-flex flex-column flex-grow-1 justify-content-between">
+              <div>
+                <span class="badge bg-light text-dark fw-bold mb-2">Footwear Tech</span>
+                <h4 class="text-light mb-2" style="font-size: 1.2rem; min-height: 3.2rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Are Carbon-Plated Running Shoes Worth the Investment?</h4>
+                <p class="text-muted small mb-4" style="min-height: 3.8rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">We break down the biomechanical efficiency, energy return rates, and lifespan of full carbon marathon shoes.</p>
+              </div>
+              <a href="404.html" class="fw-bold text-decoration-none text-light mt-auto">Read Guide <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="rounded-4 overflow-hidden border border-secondary h-100 d-flex flex-column" style="background: #282828; border: 1.5px solid #444444 !important;">
+            <img src="assets/images/category-tennis.webp" alt="Tennis Racket Tension Guide" class="w-100" style="height: 230px; object-fit: cover; object-position: center;">
+            <div class="p-4 d-flex flex-column flex-grow-1 justify-content-between">
+              <div>
+                <span class="badge bg-light text-dark fw-bold mb-2">Equipment Guide</span>
+                <h4 class="text-light mb-2" style="font-size: 1.2rem; min-height: 3.2rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Tennis Racket String Tension: Control vs. Power</h4>
+                <p class="text-muted small mb-4" style="min-height: 3.8rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">How string tension impacts ball velocity, topspin rotation, and arm comfort for aggressive baseliners.</p>
+              </div>
+              <a href="404.html" class="fw-bold text-decoration-none text-light mt-auto">Read Guide <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="rounded-4 overflow-hidden border border-secondary h-100 d-flex flex-column" style="background: #282828; border: 1.5px solid #444444 !important;">
+            <img src="assets/images/category-fitness.webp" alt="Compression Gear" class="w-100" style="height: 230px; object-fit: cover; object-position: center;">
+            <div class="p-4 d-flex flex-column flex-grow-1 justify-content-between">
+              <div>
+                <span class="badge bg-light text-dark fw-bold mb-2">Apparel</span>
+                <h4 class="text-light mb-2" style="font-size: 1.2rem; min-height: 3.2rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">The Science of Compression Apparel in Muscle Recovery</h4>
+                <p class="text-muted small mb-4" style="min-height: 3.8rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">Understanding how targeted gradient compression reduces lactic acid buildup and enhances blood circulation.</p>
+              </div>
+              <a href="404.html" class="fw-bold text-decoration-none text-light mt-auto">Read Guide <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW SECTION 2: VIDEO TUTORIALS & MAINTENANCE GUIDES -->
+  <section class="section-padding bg-dark-secondary" style="border-top: 1.5px solid #444444; border-bottom: 1.5px solid #444444;">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag"><span class="dot"></span> Video Masterclasses</div>
+        <h2 class="section-title">GEAR MAINTENANCE & SETUP TUTORIALS</h2>
+        <p class="section-subtitle">Watch step-by-step masterclasses hosted by head sports equipment technicians.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="p-4 rounded-4 h-100 d-flex flex-column justify-content-between" style="background: #282828; border: 1.5px solid #444444;">
+            <div>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="badge bg-secondary text-light"><i class="fa-solid fa-video me-1"></i> Video Tutorial</span>
+                <span class="text-muted small"><i class="fa-regular fa-clock me-1"></i> 12 Mins</span>
+              </div>
+              <h5 class="text-light fw-bold mb-3">How to Precision String a High-Tension Racket</h5>
+              <p class="text-muted small mb-4">Learn string knot techniques, tension calibration, and polyester string selection for tournaments.</p>
+            </div>
+            <a href="404.html" class="btn-apex btn-apex-outline w-100 d-inline-flex justify-content-center">
+              <i class="fa-solid fa-play-circle me-2"></i> Watch Tutorial
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="p-4 rounded-4 h-100 d-flex flex-column justify-content-between" style="background: #282828; border: 1.5px solid #444444;">
+            <div>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="badge bg-secondary text-light"><i class="fa-solid fa-video me-1"></i> Video Tutorial</span>
+                <span class="text-muted small"><i class="fa-regular fa-clock me-1"></i> 8 Mins</span>
+              </div>
+              <h5 class="text-light fw-bold mb-3">Extending the Lifespan of Carbon Running Shoes</h5>
+              <p class="text-muted small mb-4">Cleaning techniques, midsole foam compression checks, and rotation strategies to preserve energy return.</p>
+            </div>
+            <a href="404.html" class="btn-apex btn-apex-outline w-100 d-inline-flex justify-content-center">
+              <i class="fa-solid fa-play-circle me-2"></i> Watch Tutorial
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="p-4 rounded-4 h-100 d-flex flex-column justify-content-between" style="background: #282828; border: 1.5px solid #444444;">
+            <div>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="badge bg-secondary text-light"><i class="fa-solid fa-video me-1"></i> Video Tutorial</span>
+                <span class="text-muted small"><i class="fa-regular fa-clock me-1"></i> 15 Mins</span>
+              </div>
+              <h5 class="text-light fw-bold mb-3">Gym Dumbbell & Weight Conditioning Form</h5>
+              <p class="text-muted small mb-4">Biomechanical alignment rules for dumbbell presses, rows, and shoulder stability exercises.</p>
+            </div>
+            <a href="404.html" class="btn-apex btn-apex-outline w-100 d-inline-flex justify-content-center">
+              <i class="fa-solid fa-play-circle me-2"></i> Watch Tutorial
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW SECTION 3: ATHLETE NUTRITION & RECOVERY CORNER -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag"><span class="dot"></span> Recovery Science</div>
+        <h2 class="section-title">NUTRITION & HYDRATION GUIDES</h2>
+        <p class="section-subtitle">Fueling protocols for peak matchday energy and rapid post-workout tissue repair.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="p-4 rounded-4 h-100" style="background: #282828; border: 1.5px solid #444444;">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <i class="fa-solid fa-bottle-water fs-2 text-light"></i>
+              <h4 class="text-light fw-bold mb-0">Electrolyte Balancing on Matchday</h4>
+            </div>
+            <p class="text-muted small mb-3">
+              Sodium, potassium, and magnesium ratios required to eliminate muscle cramping during 3+ hour matches in humid climates.
+            </p>
+            <span class="badge bg-dark text-light border border-secondary">Hydration Protocol</span>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="p-4 rounded-4 h-100" style="background: #282828; border: 1.5px solid #444444;">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <i class="fa-solid fa-bowl-food fs-2 text-light"></i>
+              <h4 class="text-light fw-bold mb-0">Post-Workout Protein Synthesis Window</h4>
+            </div>
+            <p class="text-muted small mb-3">
+              Optimal 30-minute post-training nutrient timing to trigger myofibrillar protein synthesis and minimize soreness.
+            </p>
+            <span class="badge bg-dark text-light border border-secondary">Nutrition Guide</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW SECTION 4: FREE BUYING MATRIX DOWNLOAD & VOUCHER NEWSLETTER -->
+  <section class="section-padding pt-0">
+    <div class="container">
+      <div class="p-5 rounded-4 text-center border border-secondary" style="background: linear-gradient(135deg, #242424 0%, #2e2e2e 100%); border: 1.5px solid #ffffff !important;">
+        <div class="section-tag mb-3"><span class="dot"></span> Free PDF Download</div>
+        <h2 class="display-6 fw-bold text-light mb-3">DOWNLOAD THE 2026 GEAR SELECTION MATRIX</h2>
+        <p class="text-muted max-w-700 mx-auto mb-4 fs-6">
+          Subscribe to our sports science newsletter to get our comprehensive 40-page equipment selection matrix PDF plus a <strong>15% discount voucher</strong> on your first order.
+        </p>
+        <form class="d-flex justify-content-center gap-2 max-w-500 mx-auto" onsubmit="event.preventDefault(); window.location.href='404.html';">
+          <input type="email" class="form-control bg-dark text-light border-secondary p-3" required placeholder="Enter your email address (e.g. name@gmail.com)">
+          <button type="submit" class="btn-apex btn-apex-primary px-4 fw-bold">Get Free PDF</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="apex-footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 mb-4 mb-lg-0">
+          <a href="index.html" class="brand-logo mb-3 d-inline-block">
+            <img src="assets/images/logoStackly.webp" alt="Logo" style="height: 45px; width: auto;">
+          </a>
+          <p class="text-muted small pe-lg-4">
+            The premier online destination for championship-tier sports equipment, apparel, and athletic footwear. Built for endurance, speed, and victory.
+          </p>
+          <div class="social-links">
+            <a href="404.html" class="icon-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="404.html" class="icon-btn" title="X Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="404.html" class="icon-btn" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="404.html" class="icon-btn" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-4 footer-col">
+          <h5>Shop Categories</h5>
+          <ul class="footer-links">
+            <li><a href="404.html">Sports Equipment</a></li>
+            <li><a href="404.html">Athletic Footwear</a></li>
+            <li><a href="404.html">Compression Apparel</a></li>
+            <li><a href="404.html">Tech Accessories</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-4 footer-col">
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop Store</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Guides & Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-4 footer-col">
+          <h5>Newsletter</h5>
+          <p class="text-muted small mb-3">Subscribe to get exclusive drops, discount vouchers, and pro gear reviews.</p>
+          <form onsubmit="event.preventDefault(); window.location.href='404.html';" class="d-flex gap-2">
+            <input type="email" class="form-control bg-dark text-light border-secondary" required placeholder="Enter your email (e.g. name@gmail.com)">
+            <button type="submit" class="btn-apex btn-apex-primary px-3" title="Subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Sports Store Inc. All rights reserved.</div>
+        <div class="d-flex gap-3">
+          <a href="404.html" class="text-muted">Privacy Policy</a>
+          <a href="404.html" class="text-muted">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/products-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

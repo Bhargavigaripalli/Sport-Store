@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Fiduciary Console - Sports Store Platform</title>
+  <meta name="description" content="Executive administrative console for Sports Store warehouse telemetry, compliance audits, and inventory governance.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/webp" href="assets/images/logoStackly.webp">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="bg-black text-white antialiased">
+
+  <!-- PRELOADER OVERLAY -->
+  <div id="preloader-overlay" class="preloader-overlay">
+    <div class="preloader-wrapper">
+      <div class="preloader-graphics-stage">
+        <svg class="preloader-svg-graphic" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="44" fill="none" stroke="#2b2b2b" stroke-width="4"></circle>
+          <circle cx="50" cy="50" r="44" fill="none" stroke="#ef4444" stroke-width="4" stroke-dasharray="70 180" stroke-linecap="round"></circle>
+        </svg>
+        <img src="assets/images/logoStackly.webp" alt="Logo" class="preloader-icon" style="height: 38px; width: auto; object-fit: contain;">
+      </div>
+      <div class="preloader-status-text">AUTHENTICATING ENTERPRISE CONSOLE...</div>
+      <div class="preloader-bar-bg">
+        <div id="preloader-bar-fill" class="preloader-bar-fill"></div>
+      </div>
+      <div id="preloader-percent-label" class="preloader-percent-label">0%</div>
+    </div>
+  </div>
+
+  <!-- MOBILE DASHBOARD TOPBAR -->
+  <div class="d-lg-none d-flex align-items-center justify-content-between px-3 py-2 bg-dark border-bottom border-secondary border-opacity-25 sticky-top z-3">
+    <a href="index.html" class="d-inline-block">
+      <img src="assets/images/logoStackly.webp" alt="Sports Store Logo" style="height: 32px; width: auto;">
+    </a>
+    <button class="btn text-white p-1 fs-4" onclick="toggleDashboardSidebar()" aria-label="Toggle Dashboard Menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+
+  <!-- DASHBOARD CONTAINER -->
+  <div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <aside class="dashboard-sidebar" id="dashboard-sidebar">
+      <!-- Top Logo Header -->
+      <div class="d-flex align-items-center justify-content-between mb-4 pb-3 border-bottom border-secondary border-opacity-25">
+        <a href="index.html" class="d-inline-block">
+          <img src="assets/images/logoStackly.webp" alt="Sports Store Logo" style="height: 38px; width: auto;">
+        </a>
+        <button class="btn text-secondary d-lg-none p-1 fs-5" onclick="toggleDashboardSidebar()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Admin Profile Badge -->
+      <div class="sidebar-profile-card" style="border-color: rgba(239, 68, 68, 0.4);">
+        <div class="avatar-circle" style="background: linear-gradient(135deg, #EF4444 0%, #333333 100%); color: white;">AD</div>
+        <div class="overflow-hidden">
+          <div class="text-xs fw-black text-white text-truncate" style="font-size: 0.85rem;">Alexander Vance</div>
+          <div class="extra-small fw-bold text-uppercase text-danger" style="font-size: 0.65rem; letter-spacing: 0.5px;">SPORTS STORE SUPER ADMIN</div>
+        </div>
+      </div>
+
+      <!-- Interactive Navigation List -->
+      <nav class="sidebar-nav-list">
+        <div class="sidebar-nav-item active" data-tab="telemetry" onclick="switchAdminTab('telemetry')" style="border-color: #ef4444;">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Network Sales Telemetry</span>
+        </div>
+        <div class="sidebar-nav-item" data-tab="directory" onclick="switchAdminTab('directory')">
+          <i class="fa-solid fa-store"></i>
+          <span>Store Directory</span>
+        </div>
+        <div class="sidebar-nav-item" data-tab="dispatch-nodes" onclick="switchAdminTab('dispatch-nodes')">
+          <i class="fa-solid fa-network-wired"></i>
+          <span>Warehouse Dispatch Nodes</span>
+        </div>
+        <div class="sidebar-nav-item" data-tab="compliance" onclick="switchAdminTab('compliance')">
+          <i class="fa-solid fa-list-check"></i>
+          <span>Audit & Compliance Queue</span>
+        </div>
+        <div class="sidebar-nav-item" data-tab="licenses" onclick="switchAdminTab('licenses')">
+          <i class="fa-solid fa-key"></i>
+          <span>Inventory SKUs & Licenses</span>
+        </div>
+        <div class="sidebar-nav-item" data-tab="overrides" onclick="switchAdminTab('overrides')">
+          <i class="fa-solid fa-sliders"></i>
+          <span>System Overrides</span>
+        </div>
+      </nav>
+
+      <!-- Bottom Actions -->
+      <div class="pt-3 border-top border-secondary border-opacity-25 mt-auto d-flex flex-column gap-2">
+        <a href="user-dashboard.html" class="sidebar-nav-item" style="color: #ffffff;">
+          <i class="fa-solid fa-user"></i>
+          <span>Switch to Manager View</span>
+        </a>
+        <a href="login.html" class="sidebar-nav-item" style="color: #a3a3a3;">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Sign Out</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN STAGE -->
+    <main class="dashboard-main">
+
+      <!-- TOP BAR HEADER -->
+      <header class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3 mb-4 pb-3 border-bottom border-secondary border-opacity-25">
+        <div>
+          <div class="d-inline-flex align-items-center gap-2 px-2.5 py-1 rounded-1 mb-2 bg-dark border border-danger border-opacity-50" style="font-size: 0.68rem; font-weight: 800; color: #f87171; text-transform: uppercase;">
+            <span class="rounded-circle bg-danger animate-pulse" style="width: 7px; height: 7px; display: inline-block;"></span>
+            ENTERPRISE NETWORK: 6 GLOBAL SPORTS STORE WAREHOUSES CONNECTED
+          </div>
+          <h1 class="fw-black text-white mb-0" id="admin-header-title" style="font-size: 1.85rem; letter-spacing: -0.5px;">Admin Fiduciary Console</h1>
+        </div>
+
+        <!-- Top Right Action Buttons -->
+        <div class="d-flex flex-wrap flex-sm-nowrap align-items-center gap-2 w-100 w-md-auto">
+          <a href="404.html" class="btn fw-extrabold px-3 py-2 text-white rounded-2 flex-grow-1 flex-sm-grow-0 text-center" style="background: #dc2626; font-size: 0.8rem; text-transform: uppercase;">
+            <i class="fa-solid fa-sliders me-1"></i> OVERRIDE STORE METRICS
+          </a>
+          <a href="user-dashboard.html" class="btn btn-outline-light fw-bold px-3 py-2 rounded-2 flex-grow-1 flex-sm-grow-0 text-center" style="font-size: 0.8rem; text-transform: uppercase; border-color: #444444;">
+            <i class="fa-solid fa-user me-1"></i> USER VIEW
+          </a>
+        </div>
+      </header>
+
+      <!-- TAB 1: NETWORK SALES TELEMETRY (DEFAULT) -->
+      <div id="tab-view-telemetry" class="admin-tab-content">
+        <!-- KPI STAT CARDS ROW -->
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">TOTAL STORE REVENUE</div>
+              <div class="kpi-val-mint">$128,450.00</div>
+              <div class="kpi-subtext"><i class="fa-solid fa-arrow-trend-up me-1"></i> +14.2% network growth</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">CONNECTED WAREHOUSES</div>
+              <div class="kpi-val-gold">6 Terminals</div>
+              <div class="kpi-subtext-muted">SLA Uptime: <strong class="text-white">99.98%</strong></div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">AUDIT ALERT QUEUE</div>
+              <div class="kpi-val-white" style="color: #f87171 !important;">3 Flagged</div>
+              <div class="kpi-subtext-muted"><i class="fa-solid fa-triangle-exclamation text-warning me-1"></i> Requires compliance review</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">LOGISTICS COST VARIANCE</div>
+              <div class="kpi-val-mint">1.8%</div>
+              <div class="kpi-subtext-muted">Optimal operating threshold</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MAIN GRID: COMPLIANCE STREAM + SYSTEM RESOURCES -->
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <div class="p-3 bg-dark rounded-3 border border-secondary border-opacity-25 h-100" style="background: #141414 !important;">
+              <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-secondary border-opacity-25">
+                <h5 class="fw-black text-white mb-0" style="font-size: 1rem; letter-spacing: 0.5px;">
+                  <i class="fa-solid fa-shield-halved text-danger me-2"></i> LIVE SPORTS STORE COMPLIANCE & DISPATCH STREAM
+                </h5>
+                <span class="badge bg-black text-light border border-secondary border-opacity-25" style="font-size: 0.65rem;">REAL-TIME TELEMETRY</span>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table table-dark table-hover align-middle mb-0" style="font-size: 0.85rem;">
+                  <thead>
+                    <tr class="text-secondary uppercase" style="font-size: 0.7rem; border-bottom: 1px solid #333333;">
+                      <th>NODE ID</th>
+                      <th>WAREHOUSE & LOCATION</th>
+                      <th>TELEMETRY METRIC</th>
+                      <th>LATENCY</th>
+                      <th>SECURITY STATUS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="fw-bold text-white">#NODE-901</td>
+                      <td class="fw-semibold text-white">LA Main Warehouse (Node #1)</td>
+                      <td class="text-light">Sales Sync & Tax Clearing</td>
+                      <td class="font-monospace text-success fw-bold">12ms</td>
+                      <td><span class="badge bg-success bg-opacity-25 text-success border border-success px-2 py-1" style="font-size: 0.68rem;">VERIFIED</span></td>
+                    </tr>
+                    <tr>
+                      <td class="fw-bold text-white">#NODE-902</td>
+                      <td class="fw-semibold text-white">New York Showroom (Node #2)</td>
+                      <td class="text-light">Inventory Ledger Reconciliation</td>
+                      <td class="font-monospace text-warning fw-bold">18ms</td>
+                      <td><span class="badge bg-warning bg-opacity-25 text-warning border border-warning px-2 py-1" style="font-size: 0.68rem;">AUDITING</span></td>
+                    </tr>
+                    <tr>
+                      <td class="fw-bold text-white">#NODE-903</td>
+                      <td class="fw-semibold text-white">London Hub Warehouse</td>
+                      <td class="text-light">Payment Gateway Encryption</td>
+                      <td class="font-monospace text-success fw-bold">45ms</td>
+                      <td><span class="badge bg-success bg-opacity-25 text-success border border-success px-2 py-1" style="font-size: 0.68rem;">VERIFIED</span></td>
+                    </tr>
+                    <tr>
+                      <td class="fw-bold text-white">#NODE-904</td>
+                      <td class="fw-semibold text-white">Tokyo Concept Store</td>
+                      <td class="text-light">SKU Restock Token</td>
+                      <td class="font-monospace text-danger fw-bold">120ms</td>
+                      <td><span class="badge bg-danger bg-opacity-25 text-danger border border-danger px-2 py-1" style="font-size: 0.68rem;">ALERT (LATENCY)</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="p-3 bg-dark rounded-3 border border-secondary border-opacity-25 h-100 d-flex flex-column justify-content-between" style="background: #141414 !important;">
+              <div>
+                <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-secondary border-opacity-25">
+                  <h5 class="fw-black text-white mb-0" style="font-size: 1rem; letter-spacing: 0.5px;">
+                    <i class="fa-solid fa-server text-danger me-2"></i> SYSTEM WAREHOUSE RESOURCES
+                  </h5>
+                </div>
+                <div class="mb-3 p-2 bg-black rounded-2 border border-secondary border-opacity-25">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="fw-bold text-white small">Database Connection Pool</span>
+                    <span class="font-monospace extra-small text-secondary"><strong class="text-white">82</strong> / 100 active</span>
+                  </div>
+                  <div class="progress-depletion-bar"><div class="progress-fill-gold" style="width: 82%;"></div></div>
+                </div>
+                <div class="mb-3 p-2 bg-black rounded-2 border border-secondary border-opacity-25">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="fw-bold text-white small">Warehouse Dispatch Bandwidth</span>
+                    <span class="font-monospace extra-small text-secondary"><strong class="text-white">4.2</strong> / 10 Gbps</span>
+                  </div>
+                  <div class="progress-depletion-bar"><div class="progress-fill-mint" style="width: 42%;"></div></div>
+                </div>
+                <div class="mb-3 p-2 bg-black rounded-2 border border-secondary border-opacity-25">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="fw-bold text-white small">Inventory Audit Allocation</span>
+                    <span class="font-monospace extra-small text-danger fw-bold"><strong class="text-danger">92</strong> / 100 GB (HIGH)</span>
+                  </div>
+                  <div class="progress-depletion-bar"><div class="progress-fill-red" style="width: 92%;"></div></div>
+                </div>
+              </div>
+              <a href="404.html" class="btn btn-outline-danger w-100 py-2.5 fw-bold text-uppercase mt-3" style="font-size: 0.8rem;">
+                <i class="fa-solid fa-paper-plane me-1"></i> TRIGGER SYSTEM AUDIT RESTOCK PO
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: STORE DIRECTORY -->
+      <div id="tab-view-directory" class="admin-tab-content" style="display: none;">
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">ACTIVE LOCATIONS</div>
+              <div class="kpi-val-mint">6 Stores</div>
+              <div class="kpi-subtext">Global network</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">FLAGSHIP STORES</div>
+              <div class="kpi-val-gold">3 Flagships</div>
+              <div class="kpi-subtext-muted">LA, NY, London</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">WAREHOUSES</div>
+              <div class="kpi-val-white">2 Hubs</div>
+              <div class="kpi-subtext-muted">High capacity</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">REGIONAL CENTERS</div>
+              <div class="kpi-val-mint">1 Center</div>
+              <div class="kpi-subtext">Tokyo hub</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-dark rounded-3 border border-secondary border-opacity-25" style="background: #141414 !important;">
+          <h5 class="fw-black text-white mb-3"><i class="fa-solid fa-store text-danger me-2"></i> GLOBAL SPORTS STORE NETWORK DIRECTORY</h5>
+          <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle mb-0" style="font-size: 0.85rem;">
+              <thead>
+                <tr class="text-secondary uppercase">
+                  <th>STORE ID</th>
+                  <th>STORE NAME & LOCATION</th>
+                  <th>STORE MANAGER</th>
+                  <th>ANNUAL REVENUE</th>
+                  <th>NETWORK STATUS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="fw-bold text-white">#STR-101</td>
+                  <td>Los Angeles Flagship Showroom</td>
+                  <td>Bhargavi Garipalli</td>
+                  <td class="text-success fw-bold">$54,200.00</td>
+                  <td><span class="badge bg-success text-dark fw-bold">ONLINE</span></td>
+                </tr>
+                <tr>
+                  <td class="fw-bold text-white">#STR-102</td>
+                  <td>New York Manhattan Hub</td>
+                  <td>Marcus Vance</td>
+                  <td class="text-success fw-bold">$42,800.00</td>
+                  <td><span class="badge bg-success text-dark fw-bold">ONLINE</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: WAREHOUSE DISPATCH NODES -->
+      <div id="tab-view-dispatch-nodes" class="admin-tab-content" style="display: none;">
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">ACTIVE NODES</div>
+              <div class="kpi-val-mint">12 Nodes</div>
+              <div class="kpi-subtext">Cluster online</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">NODE SLA UPTIME</div>
+              <div class="kpi-val-gold">99.98%</div>
+              <div class="kpi-subtext-muted">High availability</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">AVG LATENCY</div>
+              <div class="kpi-val-white">14ms</div>
+              <div class="kpi-subtext-muted">Fast sync</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">SYNC THROUGHPUT</div>
+              <div class="kpi-val-mint">1.2 GB/s</div>
+              <div class="kpi-subtext">Real-time ledger</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-dark rounded-3 border border-secondary border-opacity-25" style="background: #141414 !important;">
+          <h5 class="fw-black text-white mb-3"><i class="fa-solid fa-network-wired text-danger me-2"></i> WAREHOUSE DISPATCH NODES TELEMETRY</h5>
+          <p class="text-secondary small">Real-time cluster telemetry and bandwidth throughput metrics.</p>
+          <a href="404.html" class="btn btn-outline-danger btn-sm">Configure Cluster Nodes</a>
+        </div>
+      </div>
+
+      <!-- TAB 4: AUDIT & COMPLIANCE QUEUE -->
+      <div id="tab-view-compliance" class="admin-tab-content" style="display: none;">
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">PENDING AUDITS</div>
+              <div class="kpi-val-mint" style="color: #f87171 !important;">5 Audits</div>
+              <div class="kpi-subtext text-danger">Review required</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">PASSED AUDITS</div>
+              <div class="kpi-val-gold">142 Audits</div>
+              <div class="kpi-subtext-muted">Cleared ledger</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">HIGH PRIORITY</div>
+              <div class="kpi-val-white">1 Case</div>
+              <div class="kpi-subtext-muted">Security alert</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">COMPLIANCE SCORE</div>
+              <div class="kpi-val-mint">99.4%</div>
+              <div class="kpi-subtext">Fiduciary tier 1</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-dark rounded-3 border border-secondary border-opacity-25" style="background: #141414 !important;">
+          <h5 class="fw-black text-white mb-3"><i class="fa-solid fa-list-check text-danger me-2"></i> COMPLIANCE & FINANCIAL AUDIT LOGS</h5>
+          <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle mb-0" style="font-size: 0.85rem;">
+              <thead>
+                <tr class="text-secondary uppercase">
+                  <th>AUDIT ID</th>
+                  <th>MODULE</th>
+                  <th>TIMESTAMP</th>
+                  <th>RESULT</th>
+                  <th>ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="fw-bold text-white">#AUD-9901</td>
+                  <td>Tax & Fiscal Clearing</td>
+                  <td>Today, 14:02 UTC</td>
+                  <td><span class="badge bg-success text-dark fw-bold">PASSED</span></td>
+                  <td><a href="404.html" class="btn btn-sm btn-outline-light">View Report</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 5: INVENTORY SKUs & LICENSES -->
+      <div id="tab-view-licenses" class="admin-tab-content" style="display: none;">
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">ACTIVE LICENSES</div>
+              <div class="kpi-val-mint">250 Keys</div>
+              <div class="kpi-subtext">Enterprise active</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">SOFTWARE TOKENS</div>
+              <div class="kpi-val-gold">50 Tokens</div>
+              <div class="kpi-subtext-muted">POS encryption</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">EXPIRING SOON</div>
+              <div class="kpi-val-white">2 Keys</div>
+              <div class="kpi-subtext-muted">Next 30 days</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">ANNUAL SAVINGS</div>
+              <div class="kpi-val-mint">$45,000</div>
+              <div class="kpi-subtext">License optimization</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-dark rounded-3 border border-secondary border-opacity-25" style="background: #141414 !important;">
+          <h5 class="fw-black text-white mb-3"><i class="fa-solid fa-key text-danger me-2"></i> ENTERPRISE LICENSE & TOKEN MANAGEMENT</h5>
+          <a href="404.html" class="btn btn-outline-danger btn-sm">Renew License Keys</a>
+        </div>
+      </div>
+
+      <!-- TAB 6: SYSTEM OVERRIDES -->
+      <div id="tab-view-overrides" class="admin-tab-content" style="display: none;">
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">ACTIVE OVERRIDES</div>
+              <div class="kpi-val-mint">2 Overrides</div>
+              <div class="kpi-subtext">Manual control</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">EMERGENCY STOP</div>
+              <div class="kpi-val-gold">DISABLED</div>
+              <div class="kpi-subtext-muted">Normal operation</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">SYSTEM MODE</div>
+              <div class="kpi-val-white">PRODUCTION</div>
+              <div class="kpi-subtext-muted">Live cluster</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="kpi-card">
+              <div class="kpi-title">ADMIN KEY</div>
+              <div class="kpi-val-mint">VALID</div>
+              <div class="kpi-subtext"><i class="fa-solid fa-lock me-1"></i> RSA-4096 Auth</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-dark rounded-3 border border-secondary border-opacity-25" style="background: #141414 !important;">
+          <h5 class="fw-black text-white mb-3"><i class="fa-solid fa-sliders text-danger me-2"></i> SYSTEM OVERRIDES & CONFIGURATION CONTROLS</h5>
+          <div class="d-flex gap-2">
+            <a href="404.html" class="btn btn-danger btn-sm">Emergency System Lock</a>
+            <a href="404.html" class="btn btn-outline-light btn-sm">Flush Telemetry Cache</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JS Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function toggleDashboardSidebar() {
+      const sidebar = document.getElementById('dashboard-sidebar');
+      if (sidebar) sidebar.classList.toggle('show');
+    }
+
+    function switchAdminTab(tabId) {
+      document.querySelectorAll('.sidebar-nav-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      const activeNav = document.querySelector(`[data-tab="${tabId}"]`);
+      if (activeNav) activeNav.classList.add('active');
+
+      document.querySelectorAll('.admin-tab-content').forEach(view => {
+        view.style.display = 'none';
+      });
+      const selectedView = document.getElementById(`tab-view-${tabId}`);
+      if (selectedView) selectedView.style.display = 'block';
+
+      const titleMap = {
+        'telemetry': 'Admin Fiduciary Console',
+        'directory': 'Global Sports Store & Franchise Directory',
+        'dispatch-nodes': 'Warehouse Dispatch Nodes & Telemetry',
+        'compliance': 'Audit & Compliance Management Queue',
+        'licenses': 'Inventory SKUs & License Management',
+        'overrides': 'System Overrides & Fiduciary Settings'
+      };
+      const titleEl = document.getElementById('admin-header-title');
+      if (titleEl && titleMap[tabId]) titleEl.textContent = titleMap[tabId];
+
+      const sidebar = document.getElementById('dashboard-sidebar');
+      if (sidebar && sidebar.classList.contains('show')) {
+        sidebar.classList.remove('show');
+      }
+    }
+  </script>
+</body>
+</html>
