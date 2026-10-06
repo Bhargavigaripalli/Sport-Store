@@ -10,7 +10,90 @@ document.addEventListener('DOMContentLoaded', () => {
   initDealCountdown();
   initGearFinder();
   initPageSpecifics();
+  initScrollAnimations();
+  initBackToTop();
+  initSportsBackgroundParticles();
 });
+
+/* --- GLOBAL SPORTS BACKGROUND PARTICLES INJECTOR --- */
+function initSportsBackgroundParticles() {
+  if (document.querySelector('.sports-bg-particles')) return;
+
+  const container = document.createElement('div');
+  container.className = 'sports-bg-particles';
+  container.innerHTML = `
+    <div class="sports-particle sp-1"><i class="fa-solid fa-basketball"></i></div>
+    <div class="sports-particle sp-2"><i class="fa-solid fa-football"></i></div>
+    <div class="sports-particle sp-3"><i class="fa-solid fa-trophy"></i></div>
+    <div class="sports-particle sp-4"><i class="fa-solid fa-bolt"></i></div>
+    <div class="sports-particle sp-5"><i class="fa-solid fa-stopwatch"></i></div>
+    <div class="sports-particle sp-6"><i class="fa-solid fa-person-running"></i></div>
+    <div class="sports-particle sp-7"><i class="fa-solid fa-medal"></i></div>
+    <div class="sports-particle sp-8"><i class="fa-solid fa-baseball-bat-ball"></i></div>
+    <div class="sports-particle sp-9"><i class="fa-solid fa-table-tennis-paddle-ball"></i></div>
+    <div class="sports-particle sp-10"><i class="fa-solid fa-volleyball"></i></div>
+    <div class="sports-particle sp-11"><i class="fa-solid fa-dumbbell"></i></div>
+    <div class="sports-particle sp-12"><i class="fa-solid fa-fire"></i></div>
+  `;
+
+  document.body.prepend(container);
+}
+
+/* --- GLOBAL BACK TO TOP BUTTON --- */
+function initBackToTop() {
+  let btn = document.getElementById('back-to-top-btn');
+  if (!btn) {
+    btn = document.createElement('button');
+    btn.id = 'back-to-top-btn';
+    btn.className = 'back-to-top-btn';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.innerHTML = `<i class="fa-solid fa-arrow-up"></i>`;
+    document.body.appendChild(btn);
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 280) {
+      btn.classList.add('show');
+    } else {
+      btn.classList.remove('show');
+    }
+  });
+}
+
+/* --- SCROLL REVEAL ANIMATIONS (INTERSECTION OBSERVER) --- */
+function initScrollAnimations() {
+  if (!('IntersectionObserver' in window)) return;
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px 0px -40px 0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  const targets = document.querySelectorAll(
+    '.section-header, .feature-card, .category-card, .product-card, .kpi-card, .about-grant-box, .accordion-item, .reveal-on-scroll, .deal-card, .testimonial-card, .gear-finder-card'
+  );
+
+  targets.forEach((el, index) => {
+    el.classList.add('reveal-element');
+    const delay = (index % 4) * 90;
+    el.style.transitionDelay = `${delay}ms`;
+    observer.observe(el);
+  });
+}
 
 /* --- PRELOADER ANIMATION ENGINE --- */
 function initPreloader() {
@@ -320,6 +403,9 @@ function initPageSpecifics() {
   if (document.getElementById('cart-table-body')) {
     renderCartPage();
   }
+
+  // Re-observe dynamic nodes for scroll animations
+  initScrollAnimations();
 }
 
 /* --- SHOP PAGE FILTER & SEARCH ENGINE --- */
@@ -360,6 +446,7 @@ function initShopPage() {
     } else {
       grid.innerHTML = list.map(p => createProductCardHTML(p, "col-lg-4 col-md-6 col-sm-12 mb-4")).join('');
     }
+    initScrollAnimations();
   }
 
   if (priceRange && priceVal) {

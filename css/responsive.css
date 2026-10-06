@@ -10,6 +10,11 @@
 }
 
 /* Medium Desktop & Tablets (Landscape) */
+/* ==========================================================================
+   COMPLETE HOME PAGE MOBILE RESPONSIVE OVERLAP RESOLUTION
+   ========================================================================== */
+
+/* Tablets & Mobile (< 992px) */
 @media (max-width: 992px) {
   .nav-menu {
     display: none !important;
@@ -20,48 +25,63 @@
   }
 
   .hero-section {
-    padding-top: 110px;
-    text-align: center;
+    padding-top: 110px !important;
+    text-align: center !important;
   }
 
   .hero-subtitle {
-    margin: 0 auto 30px auto;
+    margin: 0 auto 30px auto !important;
   }
 
   .hero-cta-group {
-    justify-content: center;
+    justify-content: center !important;
   }
 
   .hero-stats {
-    justify-content: center;
+    justify-content: center !important;
   }
 
   .hero-showcase {
-    margin-top: 40px;
+    margin-top: 35px !important;
+    text-align: center !important;
+  }
+
+  .hero-floating-card {
+    display: none !important;
+  }
+
+  .hero-main-card img {
+    height: 380px !important;
+    object-fit: cover !important;
+  }
+
+  .deal-card {
+    padding: 30px 20px !important;
+    border-radius: 18px !important;
   }
 
   .shop-layout {
-    flex-direction: column;
+    flex-direction: column !important;
   }
 
   .shop-sidebar {
-    margin-bottom: 30px;
+    margin-bottom: 30px !important;
   }
 
   /* Display Typography Responsiveness */
   .display-3 {
     font-size: 2.5rem !important;
-    word-wrap: break-word;
+    word-wrap: break-word !important;
   }
 
   .display-4 {
     font-size: 2.2rem !important;
-    word-wrap: break-word;
+    word-wrap: break-word !important;
   }
 
   .display-6 {
     font-size: 1.75rem !important;
-    word-wrap: break-word;
+    word-wrap: break-word !important;
   }
 
   .about-hero-section, .contact-hero-section {
@@ -131,10 +151,16 @@
   }
 }
 
-/* Small Tablets & Mobile Devices (Portrait) */
+/* Small Tablets & Mobile Devices (< 768px) */
 @media (max-width: 768px) {
+  .hero-section {
+    padding-top: 110px !important;
+    padding-bottom: 50px !important;
+  }
+
   .hero-title {
-    font-size: 2.2rem !important;
+    font-size: 2.1rem !important;
+    line-height: 1.2 !important;
   }
 
   .section-title {
@@ -143,18 +169,18 @@
 
   .display-3 {
     font-size: 1.95rem !important;
-    line-height: 1.2;
-    letter-spacing: -0.5px;
+    line-height: 1.2 !important;
+    letter-spacing: -0.5px !important;
   }
 
   .display-4 {
     font-size: 1.8rem !important;
-    line-height: 1.25;
+    line-height: 1.25 !important;
   }
 
   .display-6 {
     font-size: 1.45rem !important;
-    line-height: 1.25;
+    line-height: 1.25 !important;
   }
 
   .about-hero-section, .contact-hero-section {
@@ -165,7 +191,59 @@
   .section-padding {
     padding-top: 45px !important;
     padding-bottom: 45px !important;
-    scroll-margin-top: 90px;
+    scroll-margin-top: 90px !important;
+  }
+
+  .hero-stats {
+    flex-wrap: wrap !important;
+    gap: 18px !important;
+    justify-content: space-around !important;
+  }
+
+  .stat-item .stat-number {
+    font-size: 1.6rem !important;
+  }
+
+  .stat-item .stat-label {
+    font-size: 0.78rem !important;
+  }
+
+  /* Deal Card Mobile Adjustments */
+  .deal-card {
+    padding: 24px 16px !important;
+  }
+
+  .deal-card h2 {
+    font-size: 1.75rem !important;
+  }
+
+  .timer-box {
+    gap: 10px !important;
+    justify-content: flex-start !important;
+  }
+
+  .timer-unit {
+    min-width: 70px !important;
+    padding: 8px 10px !important;
+  }
+
+  .timer-num {
+    font-size: 1.4rem !important;
+  }
+
+  .timer-label {
+    font-size: 0.7rem !important;
+  }
+
+  /* Product Card Footer Flex Wrap */
+  .product-footer {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+
+  .product-footer .btn-apex {
+    width: 100% !important;
+    margin-top: 4px !important;
   }
 
   /* About & Contact Specific Responsiveness */
@@ -175,16 +253,16 @@
 
   /* Cart & Table Responsiveness */
   .cart-table {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
   }
 
   .footer-bottom {
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
+    flex-direction: column !important;
+    gap: 15px !important;
+    text-align: center !important;
   }
 
   /* Auth Card Padding */
@@ -194,10 +272,55 @@
   }
 }
 
+/* Phones & Small Screens (< 576px) */
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 1.85rem !important;
+  }
+
+  .hero-main-card img {
+    height: 280px !important;
+  }
+
+  .category-card {
+    height: 230px !important;
+  }
+
+  .category-overlay {
+    padding: 16px !important;
+  }
+
+  .category-title {
+    font-size: 1.2rem !important;
+  }
+
+  .product-image-wrap {
+    height: 210px !important;
+  }
+
+  .product-body {
+    padding: 16px !important;
+  }
+
+  .product-name {
+    font-size: 1rem !important;
+    min-height: 2.6rem !important;
+  }
+
+  .current-price {
+    font-size: 1.15rem !important;
+  }
+
+  /* Brand partner badges on small screens */
+  .brand-partner-badge {
+    font-size: 0.85rem !important;
+  }
+}
+
 /* Extra Small Phones (< 480px) */
 @media (max-width: 480px) {
   .hero-title {
-    font-size: 1.8rem !important;
+    font-size: 1.65rem !important;
   }
 
   .display-3 {
@@ -222,21 +345,141 @@
   }
 
   .hero-cta-group {
-    flex-direction: column;
-    width: 100%;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 12px !important;
   }
 
-  .btn-apex {
-    width: 100%;
-  }
-
-  .hero-floating-card {
-    display: none !important;
+  .hero-cta-group .btn-apex {
+    width: 100% !important;
   }
 
   .mobile-menu-overlay {
     max-width: 100% !important;
     padding: 20px 16px !important;
+  }
+
+  .timer-box {
+    display: flex !important;
+    width: 100% !important;
+    gap: 8px !important;
+  }
+
+  .timer-unit {
+    flex: 1 1 0px !important;
+    min-width: 0 !important;
+    padding: 8px 6px !important;
+  }
+
+  .timer-num {
+    font-size: 1.25rem !important;
+  }
+
+  .timer-label {
+    font-size: 0.65rem !important;
+  }
+
+  .deal-card .btn-apex-orange {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  /* Extra Small Mobile Overlap Defenses */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
+
+  .hero-title {
+    font-size: 1.6rem !important;
+    line-height: 1.25 !important;
+    word-break: break-word !important;
+  }
+
+  .section-title {
+    font-size: 1.45rem !important;
+    line-height: 1.25 !important;
+    word-break: break-word !important;
+  }
+
+  /* Deal Card Price Row Wrap */
+  .deal-card .d-flex.align-items-center.gap-3 {
+    flex-wrap: wrap !important;
+    gap: 8px 12px !important;
+  }
+
+  .deal-card .fs-2 {
+    font-size: 1.5rem !important;
+  }
+
+  .deal-card img {
+    max-height: 240px !important;
+    width: 100% !important;
+    margin-top: 18px !important;
+    object-fit: cover !important;
+  }
+
+  /* Gear Finder Guarantee Badges Wrap */
+  .col-lg-5 .d-flex.gap-3 {
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+  }
+
+  .col-lg-5 .border-start {
+    border-left: none !important;
+    border-top: 1px solid #444444 !important;
+    padding-left: 0 !important;
+    padding-top: 10px !important;
+    width: 100% !important;
+  }
+
+  /* Product Card Mobile Padding & Footer */
+  .product-card {
+    border-radius: 14px !important;
+    overflow: hidden !important;
+  }
+
+  .product-badge {
+    top: 10px !important;
+    left: 10px !important;
+    font-size: 0.68rem !important;
+    padding: 3px 8px !important;
+  }
+
+  .product-footer {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+
+  .product-footer .btn-apex {
+    width: 100% !important;
+    justify-content: center !important;
+    margin-top: 4px !important;
+    padding: 8px !important;
+  }
+
+  /* Testimonial Card Clamps */
+  .testimonial-card {
+    padding: 16px 14px !important;
+  }
+
+  /* Brand Partner Badges Clamps */
+  .brand-partner-badge {
+    font-size: 0.78rem !important;
+  }
+
+  /* Footer Newsletter Stack */
+  footer form.d-flex {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  footer form button {
+    width: 100% !important;
+    justify-content: center !important;
   }
 
   /* Dashboard Extra Small Mobile Clamps */
@@ -246,18 +489,18 @@
 
   .kpi-val-mint, .kpi-val-gold, .kpi-val-white {
     font-size: 1.45rem !important;
-    word-break: break-word;
+    word-break: break-word !important;
   }
 
   #user-header-title, #admin-header-title {
     font-size: 1.3rem !important;
-    word-break: break-word;
-    line-height: 1.25;
+    word-break: break-word !important;
+    line-height: 1.25 !important;
   }
 
   .toast-container {
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
+    left: 15px !important;
+    right: 15px !important;
+    bottom: 15px !important;
   }
 }
